@@ -21,7 +21,7 @@ class Admin::ProductsController < ApplicationController
     @product = Product.new(product_params)
     binding.pry
     @product.save
-    redirect_to admin_products_path
+    redirect_to :index
   end
 
   # 商品編集
