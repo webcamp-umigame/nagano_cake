@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :admins
-  devise_for :customers
+    devise_for :admins, controllers: {
+    sessions:      'admins/sessions',
+    passwords:     'admins/passwords',
+    registrations: 'admins/registrations'
+  }
+  devise_for :customers, controllers: {
+    sessions:      'customers/sessions',
+    passwords:     'customers/passwords',
+    registrations: 'customers/registrations'
+  }
 
   # admin側サイトのrouting
   namespace :admin do
@@ -17,7 +25,7 @@ Rails.application.routes.draw do
     root 'homes#top'
     get 'about' => 'homes#about'
     resources :products, only: [:index, :show]
-    resources :customers, only: [:show, :edit, :update]
+    resource :customers, only: [:show, :edit, :update]
       get 'customers/unsubscribe' => 'customers#unsubscribe'
       patch 'customers/withdraw'  => 'customers#withdraw'
     resources :orders, only: [:new, :create, :index, :show]
