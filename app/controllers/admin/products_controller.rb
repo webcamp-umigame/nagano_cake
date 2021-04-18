@@ -19,9 +19,8 @@ class Admin::ProductsController < ApplicationController
   # 投稿データ保存
   def create
     @product = Product.new(product_params)
-    binding.pry
     @product.save
-    redirect_to :index
+    redirect_to admin_products_path
   end
 
   # 商品編集
@@ -39,7 +38,7 @@ class Admin::ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:product_name, :product_image, :product_description, :sales_price, :sales_status)
+    params.require(:product).permit(:product_name, :product_image, :product_description, :sales_price, :sales_status, :genre_id)
   end
 
 

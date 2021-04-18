@@ -16,12 +16,18 @@
 <tr>
 <td><%= product.id %></td>
 <td><%= link_to product_path(product.id) do %>
-<%= product_name_tag product, :product_name %>
+<%= product.product_name %>
 </td>
 <% end %>
 <td><%= product.sales_price %></td>
 
-<td><%= product.sales_status %></td>
+<td><%= product.genre.name %></td>
+
+<% if product.sales_status == true %>
+  <td>販売中</td>
+  <% else %>
+  <td>販売停止中</td>
+  <% end %>
 </tr>
 <% end %>
 
