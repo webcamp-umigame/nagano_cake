@@ -1,0 +1,26 @@
+<h1>商品詳細</h1>
+ <%= attachment_image_tag @product, :@product_image %>
+<table>
+<thead>
+<tbody>
+<tr>
+<td>商品名
+   <%= @product.product_name %>
+</td>
+<td>商品説明
+   <%= @product.product_description %>
+</td>
+<td>ジャンル
+</td>
+<td>税込価格</td>
+　　<h5>(税抜価格)</h5>
+<td><%= @product.sales_price %></td>
+    <h5><%= @product.sales_price(100,1.08) %></h5>
+<td>販売ステータス
+   <%= @product.sales_status %>
+</td>
+<td><%= link_to '編集する', edit_product_path(@product), class: "btn btn-success text-light" %></td>
+</tr>
+</tbody>
+</thead>
+</table>

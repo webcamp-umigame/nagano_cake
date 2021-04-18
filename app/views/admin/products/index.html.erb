@@ -1,0 +1,30 @@
+<h1>商品一覧</h1>
+<table>
+<thead>
+<tr>
+<th>商品ID</th>
+<th>商品名</th>
+<th>税抜価格</th>
+<th>ジャンル</th>
+<th></th>
+<th>ステータス</th>
+</tr>
+</thead>
+
+<tbody>
+<% @products.each do |product| %>
+<tr>
+<td><%= product.id %></td>
+<td><%= link_to product_path(product.id) do %>
+<%= product_name_tag product, :product_name %>
+</td>
+<% end %>
+<td><%= product.sales_price %></td>
+
+<td><%= product.sales_status %></td>
+</tr>
+<% end %>
+
+
+</tbody>
+</table>
