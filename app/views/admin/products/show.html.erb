@@ -1,4 +1,5 @@
 <h1>商品詳細</h1>
+ <%= attachment_image_tag @product, :@product_image %>
 <table>
 <thead>
 <tbody>
@@ -11,9 +12,10 @@
 </td>
 <td>ジャンル
 </td>
-<td>税込価格(税抜価格)
-   <%= @product.sales_price %>
-</td>
+<td>税込価格</td>
+　　<h5>(税抜価格)</h5>
+<td><%= @product.sales_price %></td>
+    <h5><%= @product.sales_price(100,1.08) %></h5>
 <td>販売ステータス
    <%= @product.sales_status %>
 </td>

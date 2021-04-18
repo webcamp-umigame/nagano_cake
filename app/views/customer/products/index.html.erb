@@ -1,0 +1,14 @@
+<h1>商品一覧</h1>
+<table>
+<tbody>
+<%= @products.each do |product| %>
+<tr>
+<td><%= attachment_image_tag products, :@product_image %></td>
+<td><%= product.product_name %></td>
+<td>￥<%= product.sales_price %></td>
+</tr>
+<% end %>
+
+
+</tbody>
+</table>

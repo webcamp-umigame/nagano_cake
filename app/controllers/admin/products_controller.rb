@@ -19,6 +19,7 @@ class Admin::ProductsController < ApplicationController
   # 投稿データ保存
   def create
     @product = Product.new(product_params)
+    binding.pry
     @product.save
     redirect_to admin_products_path
   end
