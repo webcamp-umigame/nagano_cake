@@ -1,0 +1,13 @@
+
+
+<%= attachment_image_tag @product, :@product_image %>
+
+<table>
+  <tr>
+    <td><%= @product.product_name %></td>
+    <td><%= @product.product_description %></td>
+    <td>￥<%= @product.sales_price(100,1.08) %><h5>(税込)</h5></td>
+
+
+  </tr>
+</table>
