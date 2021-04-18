@@ -7,7 +7,8 @@ class Admin::ProductsController < ApplicationController
 
   # 投稿一覧
   def index
-    @product = Products.all
+    @products = Product.all
+    @product = Product.new
   end
 
   # 商品詳細
@@ -19,16 +20,24 @@ class Admin::ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     @product.save
-    redirect_to product_path
+    redirect_to admin_products_path
   end
 
+  # 商品編集
+  def edit
+    @product = Product.find(params[:id])
+  end
+
+  # 商品編集更新
+  def update
+  end
 
 
 
   #  ストロングパラメータ
   private
 
-  def product_path
+  def product_params
     params.require(:product).permit(:product_name, :product_image, :product_description, :sales_price, :sales_status)
   end
 

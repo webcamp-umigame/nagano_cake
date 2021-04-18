@@ -4,5 +4,6 @@ class Product < ApplicationRecord
   has_many :order_products
 
   attachment :product_image
+  validates :sales_status, inclusion: { in: [true, false]}
 
 end

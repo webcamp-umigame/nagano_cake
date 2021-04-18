@@ -1,24 +1,36 @@
 <h1>商品新規登録</h1>
 <%= form_with model: @product, local:true do |f| %>
 
-<h4>商品画像</h4>
-<%= f.attachment_field :product_image %>
+<div class="field">
+    <%= f.label :product_image, "商品画像" %>
+    <%= f.attachment_field :product_image %>
+</div>
 
-<h4>商品名</h4>
-<%= f.text_field :product_name %>
+<div class="field">
+    <%= f.label :product_name, "商品名" %>
+    <%= f.text_field :product_name %>
+</div>
 
-<h4>商品説明</h4>
-<%= f.text_area :product_description %>
+<div class="field">
+    <%= f.label :product_description, "商品説明" %>
+    <%= f.text_area :product_description %>
+</div>
 
-<h4>ジャンル</h4>
+<div class="field">
+</div>
 
 
-<h4>価格（税抜き）</h4>
-<%= f.text_field :seles_price %>円
+<div class="field">
+    <%= f.label :sales_price, "価格（税抜き）" %>
+    <%= f.text_field :seles_price %>円
+</div>
 
-<h4>販売ステータス</h4>
-<%= f.text_field :seles_status %>
+<div class="field">
+    <%= f.label :sales_status, "販売ステータス" %>
+    <%= f.select :seles_status, [['販売中',true],['販売停止中',false]] %>
+</div>
 
-<%= f.submit '新規登録' %>
+
+<div><%= f.submit '新規登録' %></div>
 
 <% end %>

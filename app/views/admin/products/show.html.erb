@@ -4,14 +4,18 @@
 <tbody>
 <tr>
 <td>商品名
+   <%= @product.product_name %>
 </td>
 <td>商品説明
+   <%= @product.product_description %>
 </td>
 <td>ジャンル
 </td>
 <td>税込価格(税抜価格)
+   <%= @product.sales_price %>
 </td>
 <td>販売ステータス
+   <%= @product.sales_status %>
 </td>
 <td><%= link_to '編集する', edit_product_path(@product), class: "btn btn-success text-light" %></td>
 </tr>
