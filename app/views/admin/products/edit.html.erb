@@ -1,0 +1,37 @@
+<h1>商品編集</h1>
+<% form_with model:@product, local:true do |f| %>
+
+<div class="field">
+  <%= f.label :product_image, "商品画像" %>
+  <%= f.attachment_field :product_image %>
+</div>
+
+<div class="field">
+  <%= f.label :product_name, "商品名" %>
+  <%= text_field :product_name %>
+</div>
+
+<div class="field">
+  <%= f.label :product_description, "商品説明" %>
+  <%= text_field :product_description %>
+</div>
+
+<div class="field">
+  <%= f.label :genre, "ジャンル" %>
+  <%= text_field :genre %>
+</div>
+
+<div class="field">
+  <%= f.label :sales_price, "税抜価格" %>
+  <%= text_field :sales_price %>円
+</div>
+
+<div class="field">
+  <%= f.label :sales_status, "販売ステータス" %>
+  <%= text_field :sales_status %>
+</div>
+
+<div>
+  <%= f.submit '変更を保存', class: "btn btn-success text-light" %>
+</div>
+<% end %>
