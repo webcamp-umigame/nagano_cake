@@ -1,5 +1,7 @@
 <!--ジャンル名の変更-->
 <h2>ジャンル編集</h2>
+<%= render 'layouts/error_messages', validation: @genre %>
+
 <%= form_with model: [:admin,@genre], local:true do |f| %>
   <%= f.label :name,"ジャンル名" %>
   <%= f.text_field :name %>
