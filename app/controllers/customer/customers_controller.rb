@@ -1,8 +1,5 @@
 class Customer::CustomersController < ApplicationController
   
-  def top
-  end
-  
   def edit
     @customer = current_customer
   end
