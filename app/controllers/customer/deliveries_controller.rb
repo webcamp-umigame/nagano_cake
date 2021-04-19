@@ -4,7 +4,7 @@ class Customer::DeliveriesController < ApplicationController
 
   # 配送先登録/一覧画面
   def index
-    @delivery_new = current_customer.deliveries.new
+    @delivery = current_customer.deliveries.new
     @deliveries = Delivery.all
   end
 
