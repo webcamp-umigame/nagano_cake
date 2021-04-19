@@ -1,5 +1,5 @@
 class Admin::ProductsController < ApplicationController
-
+  before_action :authenticate_admin!    
   # 商品新規投稿
   def new
     @product = Product.new
