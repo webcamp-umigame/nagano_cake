@@ -3,9 +3,10 @@
     <div class="col">
       <h3>配送先登録 / 一覧</h3>
       <%= render 'layouts/flash' %>
+      <%= render 'layouts/error_messages', validation: @delivery %>
 
       <!--配送先新規登録-->
-      <%= render 'form', delivery: @delivery_new, btn: '新規登録' %>
+      <%= render 'form', delivery: @delivery, btn: '新規登録' %>
 
       <!--配送先一覧-->
       <table class="table table-bordered">
