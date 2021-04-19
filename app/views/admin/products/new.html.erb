@@ -1,39 +1,44 @@
-<h4>商品新規登録</h4>
-<%= form_with(model: [:admin, @product], local:true) do |f| %>
+<div class="container">
+  <div class="row">
+   <div class="col">
+    <h4>商品新規登録</h4>
+     <%= form_with(model: [:admin, @product], local:true) do |f| %>
 
-<div class="field">
-    <%= f.label :product_image, "商品画像" %>
-    <%= f.attachment_field :product_image %>
+     <div class="field">
+      <%= f.label :product_image, "商品画像" %>
+      <%= f.attachment_field :product_image, class: 'text-center' %>
+     </div>
+
+     <div class="field">
+      <%= f.label :product_name, "商品名" %>
+      <%= f.text_field :product_name %>
+     </div>
+
+     <div class="field">
+      <%= f.label :product_description, "商品説明" %>
+      <%= f.text_area :product_description %>
+     </div>
+
+     <div class="form_input">
+      <%= f.label :genre_id, "ジャンル" %>
+      <%= f.collection_select :genre_id, Genre.all, :id, :name, :include_blank => "ジャンルを選択してください" %>
+     </div>
+
+     <div class="field">
+      <%= f.label :sales_price, "価格（税抜き）" %>
+      <%= f.text_field :sales_price %>円
+     </div>
+
+     <div class="field">
+      <%= f.label :sales_status, "販売ステータス" %>
+      <%= f.radio_button :sales_status, "true" %>販売中
+      <%= f.radio_button :sales_status, "false" %>販売停止
+     </div>
+
+
+     <div><%= f.submit '新規登録',class: "btn btn-success text-light" %></div>
+
+     <% end %>
+   </div>
+ </div>
 </div>
-
-<div class="field">
-    <%= f.label :product_name, "商品名" %>
-    <%= f.text_field :product_name %>
-</div>
-
-<div class="field">
-    <%= f.label :product_description, "商品説明" %>
-    <%= f.text_area :product_description %>
-</div>
-
-<div class="form_input">
-    <%= f.label :genre_id, "ジャンル" %>
-    <%= f.collection_select :genre_id, Genre.all, :id, :name, :include_blank => "ジャンルを選択してください" %>
-</div>
-
-
-<div class="field">
-    <%= f.label :sales_price, "価格（税抜き）" %>
-    <%= f.text_field :sales_price %>円
-</div>
-
-<div class="field">
-    <%= f.label :sales_status, "販売ステータス" %>
-    <label><%= f.radio_button :sales_status, "true" %>販売中</label>
-    <label><%= f.radio_button :sales_status, "false" %>販売停止</label>
-</div>
-
-
-<div><%= f.submit '新規登録',class: "btn btn-success text-light" %></div>
-
-<% end %>
