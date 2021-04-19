@@ -1,0 +1,23 @@
+<div class="field">
+  <%= form_with model: delivery, local: true do |f| %>
+    <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <td><%= f.label :postal_code, "郵便番号（ハイフンなし）" %></td>
+          <td><%= f.text_field :postal_code, class: "form-control", autofocus: true, placeholder: "0000000" %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><%= f.label :address, "住所" %></td>
+          <td><%= f.text_field :address, class: "form-control", placeholder: "東京都渋谷区代々木神園町0-0" %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><%= f.label :addressee, "宛名" %></td>
+          <td><%= f.text_field :addressee, class: "form-control", placeholder: "令和道子" %></td>
+          <td><%= f.submit btn, class: "btn btn-success" %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+</div>

@@ -1,0 +1,12 @@
+# カラムと日本語の対応表 #
+# Railsはymlファイルの改行とインデントで日本語化のパスを参照しているらしく、改行とインデントを入れるのをお忘れなく！
+
+ja:
+  activerecord:
+    models:
+      delivery: 配送先          #モデル名
+    attributes:
+      delivery:
+        addressee: 宛名         #カラム名
+        postal_code: 郵便番号   #カラム名
+        address: 住所           #カラム名
