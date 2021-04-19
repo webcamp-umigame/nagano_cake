@@ -25,7 +25,9 @@ Rails.application.routes.draw do
     root 'homes#top'
     get 'about' => 'homes#about'
     resources :products, only: [:index, :show]
-    resource :customers, only: [:show, :edit, :update]
+    resource :customers, only: [:show, :update]
+      get 'customers/profile/edit' => 'customers#edit'
+      patch 'customers/profile' => 'customers#update'
       get 'customers/unsubscribe' => 'customers#unsubscribe'
       patch 'customers/withdraw'  => 'customers#withdraw'
     resources :orders, only: [:new, :create, :index, :show]

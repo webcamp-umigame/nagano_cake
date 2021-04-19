@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class Customers::RegistrationsController < Devise::RegistrationsController
-  before_action :configure_sign_up_params, only: [:create]
-  before_action :authenticate_customer!, only: [:edit, :update]
+  # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -16,31 +15,14 @@ class Customers::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  def edit
-    super
-  end
+  # def edit
+  #   super
+  # end
 
   # PUT /resource
-  def update
-    self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
-    prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
-
-    resource_updated = update_resource(resource, account_update_params)
-    yield resource if block_given?
-    if resource_updated
-      set_flash_message_for_update(resource, prev_unconfirmed_email)
-      bypass_sign_in resource, scope: resource_name if sign_in_after_change_password?
-      # respond_with resource, location: after_update_path_for(resource)
-      flash[:success] = "パスワード変更しました。"
-      redirect_to customers_path
-    else
-      clean_up_passwords resource
-      set_minimum_password_length
-      redirect_to customers_path
-      flash[:alert] = "パスワードを変更できませんでした。"
-    end
+  # def update
   #   super
-  end
+  # end
 
   # DELETE /resource
   # def destroy
@@ -56,24 +38,8 @@ class Customers::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  protected
-  
-  def customer_params
-    params.require(:customers).permit(:password, :password_confirmation)
-  end
-  # If you have extra params to permit, append them to the sanitizer.
-  def configure_sign_up_params
-   devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-  end
+  # protected
 
-  def update_resource(resource, params)
-    resource.update_with_password(params)
-  end
-
-  def after_update_path_for(resource)
-    customers_path(resource)
-  end
-  
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
   #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
@@ -85,9 +51,9 @@ class Customers::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  def after_sign_up_path_for(resource)
-    customer_path(resource)
-  end
+  # def after_sign_up_path_for(resource)
+  #   super(resource)
+  # end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
