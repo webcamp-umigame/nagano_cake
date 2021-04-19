@@ -2,33 +2,28 @@
   <div class="row">
     <div class="col">
       <h3>注文履歴詳細</h3>
-      
+
       <!--注文履歴詳細-->
       <table>
         <tbody>
           <tr>
             <th>購入者</th>
-            <!--admin/customersコントローラーで定義したものを入れ込む-->
-            <td><"%= link_to "山田花子", "admin_customer_path(hoge)" %"></td>
+            <td><%= link_to @customer_name, admin_customer_path(@order.customer_id)" %"></td>
           </tr>
           <tr>
             <th>注文日</th>
-            <!--admin/customersコントローラーで定義したものを入れ込む-->
-            <td><"%= link_to "山田花子", "admin_customer_path(hoge)" %"></td>
+            <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
           </tr>
           <tr>
             <th>配送先</th>
-            <!--admin/customersコントローラーで定義したものを入れ込む-->
-            <td><"%= link_to "山田花子", "admin_customer_path(hoge)" %"></td>
+            <td><%= @order.address %> <%= @order.address %><br><%= @order.addressee %></td>
           </tr>
           <tr>
             <th>支払方法</th>
-            <!--admin/customersコントローラーで定義したものを入れ込む-->
-            <td><"%= link_to "山田花子", "admin_customer_path(hoge)" %"></td>
+            <td><%= @order.payment_method %></td>
           </tr>
           <tr>
-            <th></th>
-            <!--admin/customersコントローラーで定義したものを入れ込む-->
+            <th>注文ステータス</th>
             <td><"%= link_to "山田花子", "admin_customer_path(hoge)" %"></td>
           </tr>
         </tbody>
@@ -36,7 +31,7 @@
 
       <!--各商品の製作ステータス-->
       <table>
-        
+
       </table>
     </div>
   </div>
