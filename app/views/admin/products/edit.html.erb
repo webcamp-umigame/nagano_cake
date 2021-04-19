@@ -1,37 +1,44 @@
-<h1>商品編集</h1>
-<% form_with model:@product, local:true do |f| %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+     <h4>商品編集</h4>
+      <%= form_with(model: [:admin, @product], local:true) do |f| %>
 
-<div class="field">
-  <%= f.label :product_image, "商品画像" %>
-  <%= f.attachment_field :product_image %>
-</div>
+      <div class="field">
+        <%= f.label :product_image, "商品画像" %>
+        <%= f.attachment_field :product_image %>
+      </div>
 
-<div class="field">
-  <%= f.label :product_name, "商品名" %>
-  <%= text_field :product_name %>
-</div>
+      <div class="field">
+        <%= f.label :product_name, "商品名" %>
+        <%= f.text_field :product_name %>
+      </div>
 
-<div class="field">
-  <%= f.label :product_description, "商品説明" %>
-  <%= text_field :product_description %>
-</div>
+      <div class="field">
+        <%= f.label :product_description, "商品説明" %>
+        <%= f.text_field :product_description %>
+      </div>
 
-<div class="field">
-  <%= f.label :genre, "ジャンル" %>
-  <%= text_field :genre %>
-</div>
+      <div class="form_input">
+        <%= f.label :genre_id, "ジャンル" %>
+        <%= f.collection_select :genre_id, Genre.all, :id, :name, :include_blank => "ジャンルを選択してください" %>
+      </div>
 
-<div class="field">
-  <%= f.label :sales_price, "税抜価格" %>
-  <%= text_field :sales_price %>円
-</div>
+      <div class="field">
+        <%= f.label :sales_price, "税抜価格" %>
+        <%= f.text_field :sales_price %>円
+      </div>
 
-<div class="field">
-  <%= f.label :sales_status, "販売ステータス" %>
-  <%= text_field :sales_status %>
-</div>
+      <div class="field">
+        <%= f.label :sales_status, "販売ステータス" %>
+        <label><%= f.radio_button :sales_status, "true" %>販売中</label>
+        <label><%= f.radio_button :sales_status, "false" %>販売停止</label>
+      </div>
 
-<div>
-  <%= f.submit '変更を保存', class: "btn btn-success text-light" %>
+      <div>
+        <%= f.submit '変更を保存', class: "btn btn-success text-light" %>
+      </div>
+      <% end %>
+     </div>
+  </div>
 </div>
-<% end %>
