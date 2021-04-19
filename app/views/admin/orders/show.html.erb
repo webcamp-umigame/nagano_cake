@@ -8,7 +8,7 @@
         <tbody>
           <tr>
             <th>購入者</th>
-            <td><%= link_to @customer_name, admin_customer_path(@order.customer_id)" %"></td>
+            <td><%= link_to @customer_name, admin_customer_path(@order.customer_id) %></td>
           </tr>
           <tr>
             <th>注文日</th>
@@ -24,7 +24,7 @@
           </tr>
           <tr>
             <th>注文ステータス</th>
-            <td><"%= link_to "山田花子", "admin_customer_path(hoge)" %"></td>
+            <td></td>
           </tr>
         </tbody>
       </table>
@@ -41,18 +41,27 @@
             <th>単価（税込）</th>
             <th>数量</th>
             <th>小計</th>
-            <th>製作ステータス</th>
+            <th colospan="2">製作ステータス</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
+        <%= @order_products.each do |order_product| %>
+          <tbody>
+            <tr>
+              <td><%= order_product.product.product_name %></td>
+              <td><%= order_product.product.product_name.sales_price %></td>
+              <td><%= order_product.amount %></td>
+              <td><%= order_product.tax_price %></td>
+              <td>
+                <% if @order_satus = %>
+
+                <% end %>
+                <%= form_with model: @order_product, local: true do |f| %>
+                    <%= f.collection_select :production_status , OrderProduct.production_status.keys.map {|k| [k, k]}, class: "form-controll" %>
+                  <% end %></td>
+              <td></td>
+            </tr>
+          </tbody>
+        <% end %>
       </table>
     </div>
 
@@ -62,15 +71,15 @@
         <tbody>
           <tr>
             <th>商品合計</th>
-            <td></td>
+            <td><%= "#{@order.request_amount}円" %></td>
           </tr>
           <tr>
             <th>送料</th>
-            <td></td>
+            <td><%= "#{@order.shipping_fee}円" %></td>
           </tr>
           <tr>
             <th>請求金額合計合計</th>
-            <td></td>
+            <th><%= "#{@order.request_amount}円" %></th>
           </tr>
         </tbody>
       </table>
