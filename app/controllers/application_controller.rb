@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     if customer_signed_in?
       customers_path(resource)
     else
-      admin_top_path
+      admin_root_path
     end
   end
 
