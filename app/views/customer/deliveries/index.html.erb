@@ -2,26 +2,27 @@
   <div class="row">
     <div class="col">
       <h3>配送先登録 / 一覧</h3>
+      <%= render 'layouts/flash' %>
 
       <!--配送先新規登録-->
-      <%= render 'form', deliveriy: @delivery_new, btn: '新規登録' %>
+      <%= render 'form', delivery: @delivery_new, btn: '新規登録' %>
 
       <!--配送先一覧-->
       <table class="table table-bordered">
         <tbody>
-          <tr>
+          <tr class="table-active">
             <td>郵便番号</td>
             <td>住所</td>
             <td>宛名</td>
             <td></td>
           </tr>
           <% @deliveries.each do |delivery| %>
-            <tr class="table-active">
+            <tr>
               <td><%= delivery.postal_code %></td>
               <td><%= delivery.address %></td>
               <td><%= delivery.addressee %></td>
-              <td style="text-center"><%= link_to edit_delivery_path(delivery.id), "編集する", class: "btn btn-success" %>
-                  <%= link_to delivery_path(delivery.id), "削除する", method: :delete, class: "btn btn-danger" %></td>
+              <td class="text-center"><%= link_to "編集する", edit_delivery_path(delivery.id), class: "btn btn-success mr-2" %>
+                  <%= link_to "削除する", delivery_path(delivery.id), method: :delete, class: "btn btn-danger" %></td>
             </tr>
           <% end %>
         </tbody>
