@@ -1,7 +1,10 @@
-<h1>商品一覧</h1>
-<table>
+<div class="container">
+  <div class="row">
+   <div class="col-lg-10">
+     <h4>商品一覧</h4>
+<table class="table">
 <thead>
-<tr>
+<tr class="active">
 <th>商品ID</th>
 <th>商品名</th>
 <th>税抜価格</th>
@@ -15,13 +18,14 @@
 <% @products.each do |product| %>
 <tr>
 <td><%= product.id %></td>
-<td><%= link_to product_path(product.id) do %>
+<td><%= link_to admin_product_path(product.id) do %>
 <%= product.product_name %>
 </td>
 <% end %>
 <td><%= product.sales_price %></td>
 
 <td><%= product.genre.name %></td>
+<td></td>
 
 <% if product.sales_status == true %>
   <td>販売中</td>

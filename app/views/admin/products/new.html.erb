@@ -1,4 +1,4 @@
-<h1>商品新規登録</h1>
+<h4>商品新規登録</h4>
 <%= form_with(model: [:admin, @product], local:true) do |f| %>
 
 <div class="field">
@@ -34,6 +34,6 @@
 </div>
 
 
-<div><%= f.submit '新規登録' %></div>
+<div><%= f.submit '新規登録',class: "btn btn-success text-light" %></div>
 
 <% end %>
