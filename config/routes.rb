@@ -30,7 +30,7 @@ Rails.application.routes.draw do
       patch 'customers/profile' => 'customers#update'
       get 'customers/unsubscribe' => 'customers#unsubscribe'
       patch 'customers/withdraw'  => 'customers#withdraw'
-         post 'orders/confirm' => 'orders#confirm'
+      post 'orders/confirm' => 'orders#confirm'
       get 'orders/thanx'    => 'orders#thanx'
     resources :orders, only: [:new, :create, :index, :show]
     resources :cart_items, only: [:index, :create, :update, :destroy]
