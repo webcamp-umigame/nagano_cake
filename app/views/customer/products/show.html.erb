@@ -10,6 +10,6 @@
        <p>￥<%= @product.add_tax_sales_price.to_s(:delimited) %>(税込)</p>
       </div>
    </div>
-    <%= render 'customer/cart_items/cart', cart_items: @cart_items %>
+    <%= render 'customer/cart_items/cart', cart_item: @cart_item, message: "カートに入れる" %>
  </div>
 </div>
