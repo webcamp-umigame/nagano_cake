@@ -2,7 +2,7 @@ class Customer::CartItemsController < ApplicationController
 
   def index
     #current_customerのcart情報を全部取得
-    @cart_items = Cart.where(customer_id: current_customer.id)
+    @cart_items = CartItem.where(customer_id: current_customer.id)
   end
 
   def create
@@ -22,15 +22,16 @@ class Customer::CartItemsController < ApplicationController
   end
 
   def update
-    @cart_item =
   end
 
   def destroy
-
+    @cart_item = CartItem.find(session[:cart_item_id])
+    @cart_item.destroy
   end
 
   def destroy_all
-
+    @cart_items = CartItem.where(customer_id: current_customer.id)
+    @cart_items.destroy
   end
 
   private
