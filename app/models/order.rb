@@ -2,7 +2,7 @@ class Order < ApplicationRecord
   belongs_to :customer
   has_many :order_products
 
-	validates :customer.id, :address,:addressee, :shipping_fee,
+	validates :customer, :address,:addressee, :shipping_fee,
 			  		:request_amount, :payment_method,
 			  		presence: true
 	validates :postal_core, length: {is: 7}, numericality: { only_integer: true }
