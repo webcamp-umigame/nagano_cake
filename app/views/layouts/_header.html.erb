@@ -9,7 +9,7 @@
         <ul class="navbar-nav ml-auto">
           <% if customer_signed_in? %>
           <!--customerのヘッダー-->
-          <!--(current_user)削除-->
+            <span>ようこそ<%= current_customer.first_name %>さん!</span>
             <li><%= link_to 'マイページ', customers_path(current_customer) %></li>
             <li><%= link_to '商品一覧', products_path %></li>
             <li><%= link_to 'カート', cart_items_path %></li>

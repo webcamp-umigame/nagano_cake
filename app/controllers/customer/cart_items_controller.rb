@@ -16,8 +16,14 @@ class Customer::CartItemsController < ApplicationController
       if @cart_item.save
         session[:cart_item_id] = @cart_item.id
         redirect_to cart_items_path
+      @cart_item = current_customer.cart_items.new(cart_item_params)
+      @cart_item.product_id = params[:product_id]
+      if @cart_item.save
+        session[:cart_item_id] = @cart_item.id
+        redirect_to action: :index
       else
         render "products/show/#{params[:product_id]}"
+      end
       end
     end
   end
@@ -26,19 +32,23 @@ class Customer::CartItemsController < ApplicationController
   end
 
   def destroy
+    reset_session
     @cart_item = CartItem.find(session[:cart_item_id])
     @cart_item.destroy
+    redirect_to action: :index
   end
 
   def destroy_all
+    reset_session
     @cart_items = CartItem.where(customer_id: current_customer.id)
     @cart_items.destroy
+    redirect_to action: :index
   end
 
   private
 
   def cart_item_params
-    params.require(:cart_item).permit(:product_id, :customer_id, :amount)
+    params.require(:cart_item).permit(:amount)
   end
 
 end
