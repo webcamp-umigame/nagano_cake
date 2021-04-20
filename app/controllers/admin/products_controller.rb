@@ -8,8 +8,8 @@ class Admin::ProductsController < ApplicationController
 
   # 投稿一覧
   def index
-    @products = Product.all
     @product = Product.new
+    @products = Product.page(params[:page]).per(10)
   end
 
   # 商品詳細
