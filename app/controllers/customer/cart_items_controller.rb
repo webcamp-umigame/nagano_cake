@@ -11,10 +11,11 @@ class Customer::CartItemsController < ApplicationController
       @cart_item = CartItem.find(session[:cart_item_id])
     else
       @product = Product.find(params[:id])
-      @cart_item = current_customer.cartItems.new(cart_item_params)
+      @cart_item = current_customer.CartItems.new(cart_item_params)
       @cart_item.product_id = @product.id
       if @cart_item.save
         session[:cart_item_id] = @cart_item.id
+        redirect_to cart_items_path
       else
         render "products/show/#{params[:product_id]}"
       end
