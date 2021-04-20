@@ -1,6 +1,6 @@
 class Customer::CartItemsController < ApplicationController
 
- def index
+  def index
     #current_customerのcart情報を全部取得
     @cart_items = CartItem.where(customer_id: current_customer.id)
   end
@@ -39,4 +39,5 @@ class Customer::CartItemsController < ApplicationController
   def cart_item_params
     params.require(:cart_item).permit(:product_id, :customer_id, :amount)
   end
+
 end
