@@ -15,6 +15,7 @@ class Customer::CartItemsController < ApplicationController
       @cart_item.product_id = @product.id
       if @cart_item.save
         session[:cart_item_id] = @cart_item.id
+        redirect_to cart_items_path
       else
         render "products/show/#{params[:product_id]}"
       end

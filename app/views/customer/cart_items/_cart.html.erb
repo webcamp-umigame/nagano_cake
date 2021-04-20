@@ -1,12 +1,13 @@
 <div class="field">
- <%= form_with model: cart_items do |f| %>
-  <table>
-      <tbody>
-        <tr>
-          <td><%= f.select :amount, [1,2,3,4,5,6,7,8,9], :include_blank => "個数選択" %></td>
-          <td><%= f.submit "カートに入れる" %></td>
-          <td></td>
-        </tr>
-   </tbody>
+  <%= form_with model: cart_item do |f| %>
+    <table>
+        <tbody>
+          <tr>
+            <td><%= f.select :amount, [1,2,3,4,5,6,7,8,9], :include_blank => "個数選択" %></td>
+            <td><%= f.submit "カートに入れる" %></td>
+            <td></td>
+          </tr>
+       </tbody>
+    </table>
   <% end %>
 </div>
