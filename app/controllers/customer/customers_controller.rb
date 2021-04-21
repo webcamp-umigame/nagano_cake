@@ -21,6 +21,7 @@ class Customer::CustomersController < ApplicationController
       render :edit and return
     end
   end
+  
 	
 	def withdraw
     @customer = current_customer

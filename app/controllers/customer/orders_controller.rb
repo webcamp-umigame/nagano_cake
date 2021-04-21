@@ -34,16 +34,27 @@ class Customer::OrdersController < ApplicationController
         render 'new'
       end
     end
+    @cart_items = CartItem.where(customer_id: current_customer.id)
+    @total = 0
   end
 
   def create
-    #@order = current_customer.order.new(order_params)
-    #if @order.save
-      redirect_to orders_thanx_path, flash: {success: "配送先を登録しました！"}
-    #else
-      @order = Order.all
-      #render :index
-    #end
+    @order = Order.new
+    @order.customer_id = current_customer.id
+    @order.save
+
+  current_customer.cart_items.each do |cart_item|
+    @order_item = OrderProduct.new
+    @order_item.product_id = cart_item.product_id
+    @order_item.amount = cart_item.amount
+    @order_item.tax_price = (cart_item.product.sales_price*1.1).floor
+    @order_item.order_id = @order.id
+    @order_item.save
+  end
+
+  current_customer.cart_items.destroy_all
+  redirect_to orders_thanx_path
+
   end
 
   def thanx
