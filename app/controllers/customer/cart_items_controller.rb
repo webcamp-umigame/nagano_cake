@@ -6,15 +6,21 @@ class Customer::CartItemsController < ApplicationController
   end
 
   def create
-    # cart_itemの有無を確認、なければcart_itemを作る
-    if session[:cart_item_id]
-      @cart_item = CartItem.find(session[:cart_item_id])
+    @cart_item = CartItem.find_by(product_id: params[:product_id], customer_id: current_customer.id)
+    # すでにその商品がカートに入っていたら、個数を追加
+    if @cart_item.present?
+      @cart_item.amount += params[:cart_item][:amount].to_i
+      if @cart_item.save
+        redirect_to cart_items_path, flash: {success: "商品の個数を追加しました"}
+      else
+        render "products/show/#{params[:product_id]}"
+      end
     else
+      # まだその商品がカートに入っていなかったらカートに追加
       @cart_item = current_customer.cart_items.new(cart_item_params)
       @cart_item.product_id = params[:product_id]
       if @cart_item.save
-        session[:cart_item_id] = @cart_item.id
-        redirect_to action: :index
+        redirect_to cart_items_path
       else
         render "products/show/#{params[:product_id]}"
       end
@@ -22,20 +28,27 @@ class Customer::CartItemsController < ApplicationController
   end
 
   def update
+    @cart_item = CartItem.find(params[:id])
+    if @cart_item.update(cart_item_params)
+      flash[:success] = "商品の個数を更新しました"
+      redirect_back(fallback_location: cart_items_path)
+    else
+      @cart_items = CartItem.where(customer_id: current_customer.id)
+      render :index
+    end
   end
 
   def destroy
-    reset_session
-    @cart_item = CartItem.find(session[:cart_item_id])
+    @cart_item = CartItem.find(params[:id])
     @cart_item.destroy
-    redirect_to action: :index
+    redirect_to cart_items_path, flash: {warning: "カートから商品を削除しました"}
   end
 
   def destroy_all
-    reset_session
+    #current_customerのcart情報を全部取得
     @cart_items = CartItem.where(customer_id: current_customer.id)
-    @cart_items.destroy
-    redirect_to action: :index
+    @cart_items.destroy_all
+    redirect_to cart_items_path, flash: {warning: "カート内の商品ををすべて削除しました"}
   end
 
   private
