@@ -30,13 +30,19 @@
 
             </table>
             <table><tr><th>支払い方法</th><td>　<%= @order.payment_method %></td></tr>
-            <tr><th>お届け先</th><td>〒<%= @order.postal_core %><%= @order.address %><%= @order.addressee %></td></tr>
+            <tr><th>お届け先</th><td>〒<%= @order.postal_code %><%= @order.address %><%= @order.addressee %></td></tr>
             </table>
             </table>
             <table>
             </table>
 
-            <%= link_to "注文を確定する", orders_path, method: :post, class:"btn btn-primary" %>
+            <%= form_with model: @order, method: :post, url: orders_path do |f| %>
+                <%= f.hidden_field :payment_method %>
+                <%= f.hidden_field :postal_code %>
+                <%= f.hidden_field :address %>
+                <%= f.hidden_field :addressee %>
+                <%= f.submit "注文を確定する", orders_path, class:"btn btn-primary" %>
+            <% end %>
         </div>
     </div>
 </div>
