@@ -58,7 +58,6 @@ class Customer::OrdersController < ApplicationController
   end
 
   def thanx
-    @order = Order
   end
 
   def index
