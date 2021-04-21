@@ -2,19 +2,19 @@
   <div class="row">
     <div class="col-10">
       <h3>注文履歴詳細</h3>
-      <%= render 'detailed' customer_name: @customer_name, order: @order %>
+      <%= render 'detailed', customer_name: @customer_name, order: @order %>
     </div>
   </div>
 
   <div class="row">
     <!--各商品の製作ステータス-->
     <div class="col-8">
-      <%= render 'detailed' order_products: @order_products %>
+      <%= render 'order_products', order_products: @order_products %>
     </div>
 
     <!--会計情報-->
     <div class="col-4 px-auto">
-      <%= render 'total_price' amaunt_ex_shipping: @amaunt_ex_shipping, order: @order %>
+      <%= render 'total_price', amaunt_ex_shipping: @amaunt_ex_shipping, order: @order %>
       <br><%= link_to "注文履歴一覧へ", admin_root_path, class: "btn btn-info" %>
     </div>
   </div>

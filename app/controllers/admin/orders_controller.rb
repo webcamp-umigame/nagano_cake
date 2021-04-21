@@ -15,27 +15,18 @@ class Admin::OrdersController < ApplicationController
   end
 
   def update
-    if params[:order][:order_status].to_i == 1     #注文ステータス1：入金確認
+    if params[:order][:order_status].to_i == 1         # 注文ステータス1：入金確認
       @order.update(order_status_params)
-      @order_product.update(order_products_params: 1) #製作ステータス：1(=製作待ち)に変更
-    elsif params[:order_product][:production_status].to_i == 3  #製作ステータス3：製作完了
-      @order_product.update(order_products_params)
-
-      # この注文の注文商品データをwhereで取得。pluckで製作テータスのみを配列にして、重複を削除してから個数を数える
-      # 全部の商品の製作ステータスが同じだったら、個数は1になる（はず）
-      if (OrderProduct.where(order_id: @order.id).pluck(:production_status).uniq.count == 1) && (@order_product.production_status == 3)
-        @order.update(order_status: 3)
-      end
-    end
-
-    # 製作中の商品が1件以上ある場合、注文ステータスを2 (=製作中) に更新
-    if production_status_2 >= 1
-      @order.update(order_status: 2)
-      # 注文した全商品が制作完了した場合、注文ステータスを3 (=発送準備中) に更新
-    elsif production_status_3.count == OrderProdurc.where(order_id: params[:id]).count
-      @order.update(order_status: 3)
+      @order_products.update(production_status: 1)     # 全商品の製作ステータス：1(=製作待ち)に変更
+      redirect_to admin_order_path(@order)
+    elsif params[:order][:order_status].to_i == 4      # 注文ステータス4：発送済み
+      @order.update(order_status_params)
+      redirect_to admin_order_path(@order)
     else
-      @order.update(order_status_params)
+      @customer_name = Customer.last_name + Customer.first_name
+      @order_products = OrderProduct.where(order_id: params[:id])
+      @amaunt_ex_shipping = @order.request_amount - @order.shipping_fee
+      render :show
     end
   end
 
