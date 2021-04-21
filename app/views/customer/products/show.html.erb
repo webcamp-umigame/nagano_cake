@@ -1,15 +1,22 @@
 <div class="container">
  <div class="mt-5">
   <div class="row">
-   <div class="col-lg-4">
-    <%= attachment_image_tag @product, :product_image, size: '200x200', class:"attachment product product_image fallback"%>
+   <div class="col-1"></div>
+   <div class="col-4">
+    <%= render 'layouts/error_messages', validation: @cart_item %>
+    <%= attachment_image_tag @product, :product_image, size: '300x300', class:"attachment product product_image fallback"%>
    </div>
-      <div class="col-lg-4">
+      <div class="col-4">
        <p><%= @product.product_name %></p>
        <p><%= @product.product_description %></p>
        <p>￥<%= @product.add_tax_sales_price.to_s(:delimited) %>(税込)</p>
       </div>
+       <div class="col-1"></div>
    </div>
+   <div class="row">
+   <div class="col-8">
     <%= render 'customer/cart_items/cart', cart_item: @cart_item, message: "カートに入れる" %>
+   </div>
+   </div>
  </div>
 </div>
