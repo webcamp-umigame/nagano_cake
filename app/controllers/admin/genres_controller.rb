@@ -29,8 +29,7 @@ class Admin::GenresController < ApplicationController
         render :edit
       end
     end
-
-
+    
     private
 
     def genre_params
