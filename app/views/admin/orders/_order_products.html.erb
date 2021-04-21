@@ -12,9 +12,9 @@
     <tbody>
       <tr>
         <td><%= order_product.product.product_name %></td>
-        <td><%= order_product.product.sales_price %></td>
-        <td><%= order_product.amount %></td>
         <td><%= order_product.tax_price %></td>
+        <td><%= order_product.amount %></td>
+        <td><%= order_product.tax_price * order_product.amount %></td>
         <td>
           <%= form_with model: order_product, local: true do |f| %>
             <%= f.select :production_status, OrderProduct.production_statuses.keys.map {|k| [k, k]}, {}, { class: "form-control", style: 'margin-right: 5px;' } %>
