@@ -1,11 +1,12 @@
 class Admin::GenresController < ApplicationController
+  # 管理者以外が入れないように制限
   before_action :authenticate_admin!
-
+    # ジャンル一覧、追加画面
     def index
       @genre = Genre.new
       @genres = Genre.all
     end
-
+    # ジャンルの編集画面
     def edit
       @genre = Genre.find(params[:id])
     end
