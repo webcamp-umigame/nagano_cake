@@ -1,0 +1,29 @@
+<table class="table table-borderless">
+  <tbody>
+    <tr>
+      <th>購入者</th>
+      <td><%= link_to customer_name, admin_customer_path(order.customer_id) %></td>
+    </tr>
+    <tr>
+      <th>注文日</th>
+      <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+    </tr>
+    <tr>
+      <th>配送先</th>
+      <td><%= order.address %> <%= order.address %><br><%= order.addressee %></td>
+    </tr>
+    <tr>
+      <th>支払方法</th>
+      <td><%= order.payment_method %></td>
+    </tr>
+    <tr>
+      <th>注文ステータス</th>
+      <td>
+        <%= form_with model: order, local: true do |f| %>
+          <%= f.select :order_status, Order.order_statuses.keys.map {|k| [k, k]}, {}, { class: "form-control", style: 'margin-right: 5px;' } %>
+          <%= f.submit "更新" class: "btn btn-sm btn-success" %>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
