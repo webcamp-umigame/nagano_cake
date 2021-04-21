@@ -4,11 +4,36 @@ class Customer::OrdersController < ApplicationController
     @order = Order.new
     @delivery = Delivery.new
     @delivers = current_customer.deliveries
+    # @customer_new = Order.new
   end
 
   def confirm
     @cart_items = current_customer.cart_items
-		@order = Order.new
+    @order = Order.new(order_params)
+    @order.payment_method = params[:order][:payment_method]
+    @order.address = params[:order][:address]
+    if params[:order][:address_number] == "1"
+      @order.postal_core = current_customer.postal_code
+      @order.address = current_customer.address
+      @order.addressee = current_customer.first_name+current_customer.last_name
+
+    elsif  params[:order][:address_number] ==  "2"
+      @order.address = params[:address]
+
+    elsif params[:order][:address_number] ==  "3"
+      @delivery = Delivery.new
+      @delivery.address = params[:order][:address]
+      @delivery.addressee = params[:order][:addressee]
+      @delivery.postal_code = params[:order][:postal_core]
+      @delivery.customer_id = current_customer.id
+      if @delivery.save
+        @order.postal_core = @delivery.postal_code
+        @order.addressee = @delivery.addressee
+        @order.address = @delivery.address
+      else
+        render 'new'
+      end
+    end
   end
 
   def create
@@ -36,15 +61,11 @@ class Customer::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:postal_code, :address, :name, :payment_method, :total_price)
+    params.require(:order).permit(:postal_core, :address, :addressee, :payment_method, :request_amount, :address_number)
   end
 
   def address_params
-    params.require(:order).permit(:postal_code, :address, :name)
-  end
-
-  def to_log
-    redirect_to customers_cart_items_path if params[:id] == "log"
+   params.require(:deliveries).permit(:postal_code, :address, :addressee)
   end
 
 end
