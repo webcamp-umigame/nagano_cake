@@ -1,6 +1,7 @@
 class Customer::ProductsController < ApplicationController
 
   def index
+   @products_all = Product.where(sales_status: "販売中")
    @products = Product.where(sales_status: "販売中").page(params[:page]).per(8)
   end
 
