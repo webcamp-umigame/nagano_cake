@@ -5,7 +5,7 @@ class Admin::CustomersController < ApplicationController
     @customers = Customer.all
   end
 
-	def show
+  def show
 	  @customer = Customer.find(params[:id])
 	end
 
@@ -21,8 +21,7 @@ class Admin::CustomersController < ApplicationController
   		else
   			render "edit"
   		end
-  
-  	end
+	end
 
 	private
 	def customer_params
