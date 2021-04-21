@@ -1,6 +1,9 @@
 class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin!
-  before_action :set_order
+  before_action :set_order, only: [:show, :update]
+
+  def index
+  end
 
   def show
     # 購入者 = 会員(姓) + (名)
@@ -12,19 +15,18 @@ class Admin::OrdersController < ApplicationController
   end
 
   def update
-    # 注文された商品の製作ステータス: "製作中" = 2   であるデータを全件取得
-    production_status_2 = OrderProduct.where(order_id: params[:id]).where(production_status: 2)
-    # 注文された商品の製作ステータス: "製作完了" = 3 であるデータを全件取得
-    production_status_3 = OrderProduct.where(order_id: params[:id]).where(production_status: 3)
-
-    # 製作中の商品が1件以上ある場合、注文ステータスを2 (=製作中) に更新
-    if production_status_2 >= 1
-      @order.update(order_status: 2)
-      # 注文した全商品が制作完了した場合、注文ステータスを3 (=発送準備中) に更新
-    elsif production_status_3.count == OrderProdurc.where(order_id: params[:id]).count
-      @order.update(order_status: 3)
-    else
+    if params[:order][:order_status].to_i == 1         # 注文ステータス1：入金確認
       @order.update(order_status_params)
+      @order_products.update(production_status: 1)     # 全商品の製作ステータス：1(=製作待ち)に変更
+      redirect_to admin_order_path(@order)
+    elsif params[:order][:order_status].to_i == 4      # 注文ステータス4：発送済み
+      @order.update(order_status_params)
+      redirect_to admin_order_path(@order)
+    else
+      @customer_name = Customer.last_name + Customer.first_name
+      @order_products = OrderProduct.where(order_id: params[:id])
+      @amaunt_ex_shipping = @order.request_amount - @order.shipping_fee
+      render :show
     end
   end
 
