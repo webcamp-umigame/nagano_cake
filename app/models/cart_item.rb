@@ -4,8 +4,10 @@ class CartItem < ApplicationRecord
 
   validates :amount, presence: true
 
-  def add_tax_sales_price
-   (self.sales_price * 1.10).round
+  # 税込み商品価格
+  def tax_sales_price
+    tax = 1.10
+    ((self.product.sales_price * tax).round(2)).round
   end
 
 end
