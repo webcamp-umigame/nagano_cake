@@ -15,7 +15,7 @@ class Customer::OrdersController < ApplicationController
       @order.address = current_customer.address
       @order.addressee = current_customer.first_name+current_customer.last_name
 
-    elsif  params[:order][:address_number] ==  "2"
+    elsif params[:order][:address_number] ==  "2"
       @order.address = params[:address]
 
     elsif params[:order][:address_number] ==  "3"
@@ -31,22 +31,24 @@ class Customer::OrdersController < ApplicationController
   end
 
   def create
-
-    @order.request_amount = 10000
-    @order.save
     @cart_items = CartItem.where(customer_id: current_customer.id)
+    request_amount = 0
+    @cart_items.each do |cart_item|
+      request_amount += (cart_item.amount * (((cart_item.product.sales_price * 1.10).round(2)).round))
+    end
+    @order = current_customer.orders.new(order_params)
+    @order.request_amount = request_amount
+    @order.save
 
-    current_customer.cart_items.each do |cart_item|
+    @cart_items.each do |cart_item|
       @order_item = OrderProduct.new
-      @order_item.product_id = cart_item.product_id
-      @order_item.amount = cart_item.amount
-      @order_item.tax_price = (cart_item.product.sales_price*1.1).floor
-      @order_item.order_id = @order.id
-      @order_item.save
+      @order_item = OrderProduct.create(product_id: cart_item.product_id, order_id: @order.id, amount: cart_item.amount, tax_price: ((cart_item.product.sales_price*1.10).round(2)).round)
     end
 
-    current_customer.cart_items.destroy_all
-    redirect_to orders_thanx_path
+    if OrderProduct.where(order_id: @order.id).count == current_customer.cart_items.count
+      current_customer.cart_items.destroy_all
+      redirect_to orders_thanx_path
+    end
   end
 
   def thanx

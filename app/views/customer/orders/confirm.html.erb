@@ -12,7 +12,6 @@
 
               <% @cart_items.each do |cart_item| %>
 				<% @total+= (cart_item.product.sales_price*1.1*cart_item.amount).floor %>
-
 					<tr>
 						<td><%= cart_item.product.product_name %>
 							<td><%= (cart_item.product.sales_price*1.1).floor %></td>
@@ -25,8 +24,8 @@
 
             <table border="1">
             <tr><th>送料</th><td>800</td></tr>
-            <tr><th>商品合計</th><td><%= @total%></td></tr>
-            <tr><th>請求金額</th><td><%= @total+800 %></td></tr>
+            <tr><th>商品合計</th><td><%= @total %></td></tr>
+            <tr><th>請求金額</th><td><%= @total + @order.shipping_fee %></td></tr>
 
             </table>
             <table><tr><th>支払い方法</th><td>　<%= @order.payment_method %></td></tr>
@@ -36,12 +35,12 @@
             <table>
             </table>
 
-            <%= form_with model: @order, method: :post, url: orders_path do |f| %>
+            <%= form_with model: @order, url: orders_path, method: :post do |f| %>
                 <%= f.hidden_field :payment_method %>
                 <%= f.hidden_field :postal_code %>
                 <%= f.hidden_field :address %>
                 <%= f.hidden_field :addressee %>
-                <%= f.submit "注文を確定する", orders_path, class:"btn btn-primary" %>
+                <%= f.submit "注文を確定する", class:"btn btn-primary" %>
             <% end %>
         </div>
     </div>
