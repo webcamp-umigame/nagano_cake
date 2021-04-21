@@ -6,24 +6,13 @@ class Customer::CartItemsController < ApplicationController
   end
 
   def create
-    # cart_itemの有無を確認、なければcart_itemを作る
-    if session[:cart_item_id]
-      @cart_item = CartItem.find(session[:cart_item_id])
-    else
-      @product = Product.find(params[:id])
-      @cart_item = current_customer.CartItems.new(cart_item_params)
-      @cart_item.product_id = @product.id
+    @cart_item = CartItem.find_by(product_id: params[:id], customer_id: current_custmer.id)
+    if @cart_item.present?
+      @cart_item.amout += cart_item_params
       if @cart_item.save
-        session[:cart_item_id] = @cart_item.id
-        redirect_to cart_items_path
-      @cart_item = current_customer.cart_items.new(cart_item_params)
-      @cart_item.product_id = params[:product_id]
-      if @cart_item.save
-        session[:cart_item_id] = @cart_item.id
         redirect_to action: :index
       else
         render "products/show/#{params[:product_id]}"
-      end
       end
     end
   end

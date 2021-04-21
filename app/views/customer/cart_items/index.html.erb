@@ -23,7 +23,7 @@
         <tr>
           <!--画像も入れる-->
           <td><%= cart_item.product.product_name %></td>
-          <td><%= cart_item.product.sales_price*1.1 %></td>
+          <td><%= cart_item.product.add_tax_sales_price.to_s(:delimited) %></td>
           <td><%= render 'customer/cart_items/cart', cart_item: @cart_item, message: "変更" %></td>
           <td><%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-sm btn-danger"%></td>
         </tr>
