@@ -37,7 +37,7 @@ class Customer::OrdersController < ApplicationController
       request_amount += (cart_item.amount * (((cart_item.product.sales_price * 1.10).round(2)).round))
     end
     @order = current_customer.orders.new(order_params)
-    @order.request_amount = request_amount
+    @order.request_amount = request_amount + @order.shipping_fee
     @order.save
 
     @cart_items.each do |cart_item|
