@@ -9,4 +9,5 @@ class CartItem < ApplicationRecord
     tax = 1.10
     ((self.product.sales_price * tax).round(2)).round
   end
+
 end
