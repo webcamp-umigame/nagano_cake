@@ -1,22 +1,19 @@
 <div class="container">
- <div class="mt-5">
   <div class="row">
-   <div class="col-1"></div>
    <div class="col-4">
     <%= render 'layouts/error_messages', validation: @cart_item %>
-    <%= attachment_image_tag @product, :product_image, size: '300x300', class:"attachment product product_image fallback"%>
+    <%= attachment_image_tag @product, :product_image, size: '200x150', class:"attachment product product_image fallback"%>
    </div>
       <div class="col-4">
-       <p><%= @product.product_name %></p>
-       <p><%= @product.product_description %></p>
-       <p>￥<%= @product.add_tax_sales_price.to_s(:delimited) %>(税込)</p>
+       <p><h3><%= @product.product_name %></h3></p>
+       <p><h4><%= @product.product_description %></h4></p>
+       <p><h4>￥<%= @product.add_tax_sales_price.to_s(:delimited) %>(税込)</h4></p>
       </div>
-       <div class="col-1"></div>
    </div>
-   <div class="row">
-   <div class="col-8">
-    <%= render 'customer/cart_items/cart', cart_item: @cart_item, message: "カートに入れる" %>
+   <table class="tabel-borderless table">
+        <tr></tr>
+        <td><%= render 'customer/cart_items/cart', cart_item: @cart_item, message: "カートに入れる" %></td>
+        <tr></tr>
+   </table>
    </div>
-   </div>
- </div>
 </div>

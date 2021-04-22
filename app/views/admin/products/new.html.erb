@@ -1,7 +1,8 @@
 <div class="container">
   <div class="row">
    <div class="col">
-    <h4>商品新規登録</h4>
+    <%= render 'layouts/error_messages', validation: @product %>
+    <h2>商品新規登録</h2>
      <%= form_with(model: [:admin, @product], local:true) do |f| %>
 
      <div class="field">
