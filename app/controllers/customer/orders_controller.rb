@@ -4,60 +4,55 @@ class Customer::OrdersController < ApplicationController
     @order = Order.new
     @delivery = Delivery.new
     @delivers = current_customer.deliveries
-    # @customer_new = Order.new
   end
 
   def confirm
-    @cart_items = current_customer.cart_items
-    @order = Order.new(order_params)
-    @order.payment_method = params[:order][:payment_method]
-    @order.address = params[:order][:address]
+    @cart_items = CartItem.where(customer_id: current_customer.id)
+    @total = 0
+    @order = current_customer.orders.new(order_params)
     if params[:order][:address_number] == "1"
-      @order.postal_core = current_customer.postal_code
+      @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
       @order.addressee = current_customer.first_name+current_customer.last_name
 
-    elsif  params[:order][:address_number] ==  "2"
+    elsif params[:order][:address_number] ==  "2"
       @order.address = params[:address]
 
     elsif params[:order][:address_number] ==  "3"
-      @delivery = Delivery.new
-      @delivery.address = params[:order][:address]
-      @delivery.addressee = params[:order][:addressee]
-      @delivery.postal_code = params[:order][:postal_core]
-      @delivery.customer_id = current_customer.id
+      @delivery = current_customer.deliveries.new(address_params)
       if @delivery.save
-        @order.postal_core = @delivery.postal_code
+        @order.postal_code = @delivery.postal_code
         @order.addressee = @delivery.addressee
         @order.address = @delivery.address
       else
         render 'new'
       end
     end
-    @cart_items = CartItem.where(customer_id: current_customer.id)
-    @total = 0
   end
 
   def create
-    @order = Order.new
-    @order.customer_id = current_customer.id
+    @cart_items = CartItem.where(customer_id: current_customer.id)
+    request_amount = 0
+    @cart_items.each do |cart_item|
+      request_amount += (cart_item.amount * (((cart_item.product.sales_price * 1.10).round(2)).round))
+    end
+    @order = current_customer.orders.new(order_params)
+    @order.request_amount = request_amount + @order.shipping_fee
     @order.save
 
-  　current_customer.cart_items.each do |cart_item|
-    @order_item = OrderProduct.new
-    @order_item.product_id = cart_item.product_id
-    @order_item.amount = cart_item.amount
-    @order_item.tax_price = (cart_item.product.sales_price*1.1).floor
-    @order_item.order_id = @order.id
-    @order_item.save
-  end
+    @cart_items.each do |cart_item|
+      @order_item = OrderProduct.new
+      @order_item = OrderProduct.create(product_id: cart_item.product_id, order_id: @order.id, amount: cart_item.amount, tax_price: ((cart_item.product.sales_price*1.10).round(2)).round)
+    end
 
-  　current_customer.cart_items.destroy_all
-  　redirect_to orders_thanx_path
-
+    if OrderProduct.where(order_id: @order.id).count == current_customer.cart_items.count
+      current_customer.cart_items.destroy_all
+      redirect_to orders_thanx_path
+    end
   end
 
   def thanx
+    @order = Order
   end
 
   def index
@@ -71,11 +66,11 @@ class Customer::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:postal_code, :address, :addressee, :payment_method, :request_amount, :custmer_id)
+    params.require(:order).permit(:postal_code, :address, :addressee, :payment_method, :request_amount)
   end
 
   def address_params
-   params.require(:deliveries).permit(:postal_code, :address, :addressee)
+    params.require(:deliveries).permit(:postal_code, :address, :addressee)
   end
 
 end
