@@ -25,22 +25,34 @@
                   </tr>
                   </thead>
              </table>
-
-
-           <tbody>
-            <tr><th>送料</th><td>800</td></tr>
-            <tr><th>商品合計</th><td><%= @total %></td></tr>
-            <tr><th>請求金額</th><td><%= @total + @order.shipping_fee %></td></tr>
-            </td>
+            
+            
+            <div class="row">
+                
+            </div>
+            <table class="table table-bordered">
+            <thead>
+            <tr>
+            <th>送料</th>
+            <th>商品合計</th>
+            <th>請求金額</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td>800</td>
+            <td><%= converting_to_jpy(@total) %></td>
+            <td><%= converting_to_jpy(@total + @order.shipping_fee) %></td>
+            </tr>
             </tbody>
             </table>
+
 
 
 
             <table>
                 <tr><th>支払い方法</th><td>　<%= @order.payment_method %></td></tr>
             <tr><th>お届け先</th><td>〒<%= @order.postal_code %><%= @order.address %><%= @order.addressee %></td></tr>
-
             </table>
             <table>
             </table>
