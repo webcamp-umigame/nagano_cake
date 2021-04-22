@@ -28,9 +28,9 @@
                   <%= order_product.product.product_name %>
                 <% end %>
               </td>
-              <td><%= order.request_amount %></td>
+              <td>¥<%= order.request_amount %></td>
               <td><%= order.order_status %></td>
-              <td><%= link_to '表示する', order_path(@orders), class:"btn btn-primary" %></td>
+              <td><%= link_to '表示する', order_path(order), class:"btn btn-primary" %></td>
             </tr>
           <% end %>
         </tbody>
