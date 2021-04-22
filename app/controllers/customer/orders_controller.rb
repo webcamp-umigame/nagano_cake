@@ -16,19 +16,17 @@ class Customer::OrdersController < ApplicationController
       @order.addressee = current_customer.first_name+current_customer.last_name
 
     elsif params[:order][:address_number] ==  "2"
-      @delivery = Delivery.find(params[:order][:delivery_id])
-      @order.postal_code = @delivery.postal_code
-      @order.addressee = @delivery.addressee
-      @order.address = @delivery.address
+      @order.address = params[:address]
 
     elsif params[:order][:address_number] ==  "3"
-      @order = current_customer.orders.new(order_params)
-      @order = Delivery.new
-      @order.customer_id = current_customer.id
-      @order.postal_code = @order.postal_code
-      @order.addressee = @order.addressee
-      @order.address = @order.address
-      @order.save
+      @delivery = current_customer.deliveries.new(address_params)
+      if @delivery.save
+        @order.postal_code = @delivery.postal_code
+        @order.addressee = @delivery.addressee
+        @order.address = @delivery.address
+      else
+        render 'new'
+      end
     end
   end
 
@@ -62,13 +60,17 @@ class Customer::OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
+    @order = Order
   end
 
   private
 
   def order_params
     params.require(:order).permit(:postal_code, :address, :addressee, :payment_method, :request_amount)
+  end
+
+  def address_params
+    params.require(:deliveries).permit(:postal_code, :address, :addressee)
   end
 
 end
