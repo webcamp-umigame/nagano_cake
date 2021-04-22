@@ -24,7 +24,7 @@ class Customer::OrdersController < ApplicationController
       @delivery = Delivery.new
       @delivery.address = params[:order][:address]
       @delivery.addressee = params[:order][:addressee]
-      @delivery.postal_code = params[:order][:postal_core]
+      @delivery.postal_code = params[:order][:postal_cor]
       @delivery.customer_id = current_customer.id
       if @delivery.save
         @order.postal_core = @delivery.postal_code
@@ -39,7 +39,7 @@ class Customer::OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new
+    @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.save
 
@@ -51,13 +51,14 @@ class Customer::OrdersController < ApplicationController
     @order_item.order_id = @order.id
     @order_item.save
   end
-
+  
   current_customer.cart_items.destroy_all
   redirect_to orders_thanx_path
 
   end
 
   def thanx
+    @order = Order
   end
 
   def index
@@ -71,7 +72,7 @@ class Customer::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:postal_core, :address, :addressee, :payment_method, :request_amount, :address_number)
+    params.require(:order).permit(:postal_core, :address, :addressee, :payment_method, :request_amount, :address_number, :shipping_fee)
   end
 
   def address_params
