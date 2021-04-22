@@ -1,8 +1,10 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-6">
             <h2>注文情報確認</h2>
             <table class="table table-bordered">
+                <thead>
+                <tr class="table-active">
                 <tr>
                 <td>商品名</td>
                 <td>単価（税込）</td>
@@ -20,19 +22,25 @@
 							<td><%= (cart_item.product.sales_price*1.1*cart_item.amount).floor.to_s(:delimited) %></td>
 						</tr>
 						<% end %>
+                  </tr>
+                  </thead>
+             </table>
 
-            </table>
 
-            <table class="table table-bordered">
+           <tbody>
             <tr><th>送料</th><td>800</td></tr>
             <tr><th>商品合計</th><td><%= @total %></td></tr>
             <tr><th>請求金額</th><td><%= @total + @order.shipping_fee %></td></tr>
+            </td>
+            </tbody>
             </table>
+
+
 
             <table>
                 <tr><th>支払い方法</th><td>　<%= @order.payment_method %></td></tr>
             <tr><th>お届け先</th><td>〒<%= @order.postal_code %><%= @order.address %><%= @order.addressee %></td></tr>
-            </table>
+
             </table>
             <table>
             </table>
