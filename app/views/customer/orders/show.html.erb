@@ -7,11 +7,14 @@
         <tbody>
           <tr>
             <th>注文日</th>
-            <td>created_at</td>
+            <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
           </tr>
           <tr>
             <th>配送先</th>
-            <td>orderの内容</td>
+            <td>
+              〒<%= @order.postal_code %><br>
+              <%= @order.address %><%= order.addressee %>
+            </td>
           </tr>
           <tr>
             <th>支払方法</th>
