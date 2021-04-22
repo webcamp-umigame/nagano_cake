@@ -2,6 +2,11 @@
   <div class="row">
    <div class="col-4">
     <%= render 'layouts/error_messages', validation: @cart_item %>
+      <% @cart_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+
+
     <%= attachment_image_tag @product, :product_image, size: '200x150', class:"attachment product product_image fallback"%>
    </div>
       <div class="col-4">

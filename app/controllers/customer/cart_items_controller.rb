@@ -10,10 +10,13 @@ class Customer::CartItemsController < ApplicationController
     # すでにその商品がカートに入っていたら、個数を追加
     if @cart_item.present?
       @cart_item.amount += params[:cart_item][:amount].to_i
-      if @cart_item.save
+      if @cart_item.amount > 9
+        flash[:danger] = "各商品のご注文は9個までです。カート内にすでに商品がありますので、ご確認をお願いいたします。"
+        render template: "customer/products/show"
+      elsif @cart_item.save
         redirect_to cart_items_path, flash: {success: "商品の個数を追加しました"}
       else
-        render "products/show/#{params[:product_id]}"
+        render template: "customer/products/show"
       end
     else
       # まだその商品がカートに入っていなかったらカートに追加
@@ -22,7 +25,8 @@ class Customer::CartItemsController < ApplicationController
       if @cart_item.save
         redirect_to cart_items_path
       else
-        render "products/show/#{params[:product_id]}"
+        @product = Product.find(params[:product_id])
+        render template: "customer/products/show"
       end
     end
   end

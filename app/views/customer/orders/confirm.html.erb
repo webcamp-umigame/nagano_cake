@@ -28,7 +28,7 @@
             <tr><th>商品合計</th><td><%= @total %></td></tr>
             <tr><th>請求金額</th><td><%= @total + @order.shipping_fee %></td></tr>
             </table>
-          
+
             <table><tr><th>支払い方法</th><td>　<%= @order.payment_method %></td></tr>
             <tr><th>お届け先</th><td>〒<%= @order.postal_code %><%= @order.address %><%= @order.addressee %></td></tr>
             </table>
