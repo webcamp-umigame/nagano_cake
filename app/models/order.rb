@@ -7,9 +7,9 @@ class Order < ApplicationRecord
   		  		presence: true
   validates :postal_code, length: {is: 7}, numericality: { only_integer: true }
   validates :shipping_fee, :request_amount, numericality: { only_integer: true }
-
+  
   attr_accessor :address_number
-
+  
   enum payment_method: {
     "クレジットカード": 0,
     "銀行振込": 1,
