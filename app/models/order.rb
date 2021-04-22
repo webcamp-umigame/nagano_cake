@@ -2,13 +2,12 @@ class Order < ApplicationRecord
   belongs_to :customer
   has_many :order_products
 
-  validates :customer, :address,:addressee, :shipping_fee,
-  		  		:request_amount, :payment_method,
-  		  		presence: true
-  validates :postal_code, length: {is: 7}, numericality: { only_integer: true }
-  validates :shipping_fee, :request_amount, numericality: { only_integer: true }
-  
-  attr_accessor :address_number
+   validates :customer, :address,:addressee, :shipping_fee,
+   		  		:request_amount, :payment_method,
+   		  		presence: true
+   validates :postal_code, length: {is: 7}, format: { with: /\A\d{7}\z/}
+  # validates :shipping_fee, :request_amount, format: { }
+   attr_accessor :address_number
   
   enum payment_method: {
     "クレジットカード": 0,
