@@ -17,9 +17,9 @@ module NaganoCake
     # the framework and any gems in your application.
 
     # エラーメッセージの日本語化
-    config.i18n.default_locale = :ja
+    #g.i18n.default_locale = :ja
     # config/locales以下のディレクトリ内にある全てのymlファイルを読み込むように指示する
     # ( 参考：https://qiita.com/Ushinji/items/242bfba84df7a5a67d5b )
-    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
+    #config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
   end
 end

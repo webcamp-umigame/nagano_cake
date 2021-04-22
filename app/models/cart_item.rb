@@ -2,6 +2,7 @@ class CartItem < ApplicationRecord
   belongs_to :product
   belongs_to :customer
 
+  #validates :amount, numericality: { in: 1..9 }
   validates_inclusion_of :amount, presence: true, in:1..9
 
   # 税込み商品価格
