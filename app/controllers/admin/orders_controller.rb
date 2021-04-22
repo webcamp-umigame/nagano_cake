@@ -7,7 +7,8 @@ class Admin::OrdersController < ApplicationController
 
   def show
     # 購入者 = 会員(姓) + (名)
-    @customer_name = Customer.last_name + Customer.first_name
+    @customer = Customer.find(@order.customer_id)
+    @customer_name = @customer.last_name + @customer.first_name
     # 注文IDに紐づく、OrderProductのデータを全件取得
     @order_products = OrderProduct.where(order_id: params[:id])
     # 商品合計 = 請求金額 - 送料
@@ -15,15 +16,17 @@ class Admin::OrdersController < ApplicationController
   end
 
   def update
-    if params[:order][:order_status].to_i == 1         # 注文ステータス1：入金確認
+    @order_products = OrderProduct.where(order_id: params[:id])
+    if params[:order][:order_status] == "入金確認"
       @order.update(order_status_params)
-      @order_products.update(production_status: 1)     # 全商品の製作ステータス：1(=製作待ち)に変更
+      @order_products.update(production_status: "製作待ち")
       redirect_to admin_order_path(@order)
-    elsif params[:order][:order_status].to_i == 4      # 注文ステータス4：発送済み
+    elsif params[:order][:order_status] == "発送済み"
       @order.update(order_status_params)
       redirect_to admin_order_path(@order)
     else
-      @customer_name = Customer.last_name + Customer.first_name
+      @customer = Customer.find(@order.customer_id)
+      @customer_name = @customer.last_name + @customer.first_name
       @order_products = OrderProduct.where(order_id: params[:id])
       @amaunt_ex_shipping = @order.request_amount - @order.shipping_fee
       render :show
