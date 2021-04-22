@@ -60,7 +60,7 @@ class Customer::OrdersController < ApplicationController
   end
 
   def show
-    @order = Order
+    @order = Order.find(params[:id])
   end
 
   private
