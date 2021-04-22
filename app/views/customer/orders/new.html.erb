@@ -1,10 +1,10 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h4>注文情報入力</h4>
+            <h2>注文情報入力</h2>
             <%= form_with model: @order, url: orders_confirm_path, local: :true do |f| %>
             <div>支払い方法</div>
-            
+
             <label><%= f.radio_button :payment_method, :クレジットカード, checked: true %>クレジットカード</label>
             <label><%= f.radio_button :payment_method, :銀行振込 %>銀行振込</label>
 
@@ -12,7 +12,7 @@
             <div>お届け先</div>
             <div><label><%= f.radio_button :address_number, 1, checked: true %> ご自身の住所</label>
             <label><%= current_customer.postal_code %> <%= current_customer.address %><%= current_customer.first_name %><%= current_customer.last_name %></label></div>
-            
+
             <div><label><%= f.radio_button :address_number,2 %> 登録済からの選択</label>
             <select name="address" id="address">
                 <% current_customer.deliveries.each do |delivery| %>

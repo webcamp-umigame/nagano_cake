@@ -43,7 +43,7 @@ class Customer::OrdersController < ApplicationController
     @order.customer_id = current_customer.id
     @order.save
 
-  current_customer.cart_items.each do |cart_item|
+  　current_customer.cart_items.each do |cart_item|
     @order_item = OrderProduct.new
     @order_item.product_id = cart_item.product_id
     @order_item.amount = cart_item.amount
@@ -52,8 +52,8 @@ class Customer::OrdersController < ApplicationController
     @order_item.save
   end
 
-  current_customer.cart_items.destroy_all
-  redirect_to orders_thanx_path
+  　current_customer.cart_items.destroy_all
+  　redirect_to orders_thanx_path
 
   end
 
@@ -71,7 +71,7 @@ class Customer::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:postal_core, :address, :addressee, :payment_method, :request_amount, :address_number)
+    params.require(:order).permit(:postal_code, :address, :addressee, :payment_method, :request_amount, :custmer_id)
   end
 
   def address_params

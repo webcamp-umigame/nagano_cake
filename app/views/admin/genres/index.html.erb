@@ -13,14 +13,14 @@
         </div>
       <% end %>
       <!--ジャンルの一覧画面-->
-      <table class="table">
+      <table class="table able-inverse">
         <thead>
           <tr>
             <th>ジャンル</th>
             <th></th>
           </tr>
         </thead>
-      </table>
+
       <tbody>
         <% @genres.each do |genre| %>
           <tr>
@@ -30,6 +30,7 @@
           </tr>
           <br>
         <% end %>
+        </table>
       </tbody>
 
     </div>
