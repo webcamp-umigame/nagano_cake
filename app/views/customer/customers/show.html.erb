@@ -1,11 +1,11 @@
 <div class="container">
     <div class="row">
-        <div class="col">
-        <h4>マイページ</h4>
-        
-        <div>登録情報<%= link_to "編集する", customers_profile_edit_path, class: "btn btn-success" %></div>
-        
-        <table border=1>
+        <div class="col-6">
+        <h2>マイページ</h2>
+
+        <div>登録情報 <%= link_to "編集する", customers_profile_edit_path, class: "btn btn-success" %></div>
+
+        <table class="table table-bordered">
             <tbody>
                     <tr><th>氏名</th><td><%= current_customer.first_name %> <%= current_customer.last_name %></td></tr>
                     <tr><th>カナ</th><td><%= current_customer.first_name_kana %> <%= current_customer.last_name_kana %></td></tr>
@@ -15,10 +15,10 @@
                     <tr><th>メールアドレス</th><td><%= current_customer.email %></td></tr></tr>
               </tbody>
         </table>
-        
-        <div>配送先<%= link_to "一覧を見る", deliveries_path, class: "btn btn-info" %></div>
-        <div>注文履歴<%= link_to "一覧を見る", orders_path, class: "btn btn-info" %></div>
-      
+
+        <div>配送先 <%= link_to "一覧を見る", deliveries_path, class: "btn btn-info" %></div><br />
+        <div>注文履歴 <%= link_to "一覧を見る", orders_path, class: "btn btn-info" %></div>
+
         </div>
     </div>
 </div>

@@ -25,6 +25,7 @@ class Customer::CartItemsController < ApplicationController
       if @cart_item.save
         redirect_to cart_items_path
       else
+        # params.idわたってない？
         @product = Product.find(params[:product_id])
         render template: "customer/products/show"
       end
