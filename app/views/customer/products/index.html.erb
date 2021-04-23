@@ -13,7 +13,7 @@
         <% end %></div>
        <div class="list-comment">
         <span class="list-name"><%= product.product_name %></span><br />
-        <span class="list-price">￥<%= product.sales_price %></span>
+        <span class="list-price">￥<%= product.sales_price.to_s(:delimited) %></span>
        </div>
        </div>
        <% end %>
