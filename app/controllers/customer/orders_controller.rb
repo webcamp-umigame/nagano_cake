@@ -23,7 +23,6 @@ class Customer::OrdersController < ApplicationController
 
     elsif params[:order][:address_number] ==  "3"
       @order = current_customer.orders.new(order_params)
-      @order = Delivery.new
       @order.customer_id = current_customer.id
       @order.postal_code = @order.postal_code
       @order.addressee = @order.addressee
