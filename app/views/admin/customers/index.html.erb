@@ -17,13 +17,15 @@
               <td><%= customer.id %></td>
               <td><%= link_to customer.first_name+customer.last_name, admin_customer_path(customer) %></td>
               <td><%= customer.email %></td>
-              <td>
-                <%= customer.is_deleted %>
-                <!--if文を使って文字を表示させる-->
-              </td>
+              <% if customer.is_deleted == false %>
+                <td class="text-success">有効</td>
+              <% else %>
+                <td class="text-muted">退会</td>
+              <% end %>
             </tr>
-            <br>
           <% end %>
+
+          <%= paginate @customers %>
         </tbody>
       </table>
     </div>
