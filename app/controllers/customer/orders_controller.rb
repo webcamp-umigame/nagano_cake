@@ -16,7 +16,10 @@ class Customer::OrdersController < ApplicationController
       @order.addressee = current_customer.first_name+current_customer.last_name
 
     elsif params[:order][:address_number] ==  "2"
-      @order.address = params[:address]
+      @delivery = Delivery.find(params[:order][:delivery_id])
+      @order.postal_code = @delivery.postal_code
+      @order.addressee = @delivery.addressee
+      @order.address = @delivery.address
 
     elsif params[:order][:address_number] ==  "3"
       @order = current_customer.orders.new(order_params)
@@ -59,7 +62,7 @@ class Customer::OrdersController < ApplicationController
   end
 
   def show
-    @order = Order
+    @order = Order.find(params[:id])
   end
 
   private
