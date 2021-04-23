@@ -5,7 +5,7 @@ class Customer::DeliveriesController < ApplicationController
   # 配送先登録/一覧画面
   def index
     @delivery = current_customer.deliveries.new
-    @deliveries = Delivery.all
+    @deliveries = Delivery.where(customer_id: current_customer.id)
   end
 
   # 配送先登録/一覧画面 => 配送先登録（注文情報入力画面の配送先登録は、orders controllerにて指定）
