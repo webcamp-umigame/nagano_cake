@@ -9,7 +9,7 @@ class Admin::OrdersController < ApplicationController
   def show
     # 購入者 = 会員(姓) + (名)
     @customer = Customer.find(@order.customer_id)
-    @customer_name = @customer.last_name + @customer.first_name
+    @customer_name = @customer.first_name + @customer.last_name
     # 注文IDに紐づく、OrderProductのデータを全件取得
     @order_products = OrderProduct.where(order_id: params[:id])
     # 商品合計 = 請求金額 - 送料
