@@ -11,11 +11,8 @@ class Customer::DeliveriesController < ApplicationController
   # 配送先登録/一覧画面 => 配送先登録（注文情報入力画面の配送先登録は、orders controllerにて指定）
   def create
     @delivery = current_customer.deliveries.new(delivery_params)
-    if @delivery.save
-      redirect_to deliveries_path, flash: {success: "配送先を登録しました！"}
-    else
-      @deliveries = Delivery.all
-      render :index
+    unless @delivery.save
+      render 'error_messages'
     end
   end
 
@@ -28,14 +25,13 @@ class Customer::DeliveriesController < ApplicationController
     if @delivery.update(delivery_params)
       redirect_to deliveries_path, flash: {success: "配送先を更新しました！"}
     else
-      render :edit
+      render 'error_messages'
     end
   end
 
   # 配送先登録/一覧画面 => 配送先削除
   def destroy
     @delivery.destroy
-    redirect_to deliveries_path, flash: {warning: "配送先を削除しました！"}
   end
 
   private

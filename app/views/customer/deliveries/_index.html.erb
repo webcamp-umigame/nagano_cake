@@ -1,0 +1,17 @@
+<tbody>
+  <tr class="table-active">
+    <td>郵便番号</td>
+    <td>住所</td>
+    <td>宛名</td>
+    <td></td>
+  </tr>
+  <% deliveries.each do |delivery| %>
+    <tr>
+      <td><%= delivery.postal_code %></td>
+      <td><%= delivery.address %></td>
+      <td><%= delivery.addressee %></td>
+      <td class="text-center"><%= link_to "編集する", edit_delivery_path(delivery.id), class: "btn btn-success mr-2" %>
+          <%= link_to "削除する", delivery_path(delivery.id), method: :delete, class: "btn btn-danger", data: { confirm: "配送先を削除しますか？" } %></td>
+    </tr>
+  <% end %>
+</tbody>
