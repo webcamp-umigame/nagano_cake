@@ -18,7 +18,6 @@
               <td><%= order.customer.first_name %><%= order.customer.last_name %></td>
               <td><%= order.order_products.sum(:amount) %></td>
               <td><%= order.order_status %></td>
-              <br>
             </tr>
           <% end %>
         </tbody>
