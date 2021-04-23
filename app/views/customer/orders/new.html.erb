@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h4>注文情報入力</h4>
+      <h2>注文情報入力</h2>
       <%= form_with model: @order, url: orders_confirm_path, local: :true do |f| %>
       <div>支払い方法</div>
 
@@ -10,7 +10,7 @@
 
       <div>お届け先</div>
       <div><label><%= f.radio_button :address_number, 1, checked: true %> ご自身の住所</label>
-      <label><%= current_customer.postal_code %> <%= current_customer.address %><%= current_customer.first_name %><%= current_customer.last_name %></label></div>
+      <label>〒<%= current_customer.postal_code %> <%= current_customer.address %><%= current_customer.first_name %><%= current_customer.last_name %></label></div>
 
       <div>
         <label>
@@ -19,10 +19,13 @@
       </div>
 
 
-      <label><%= f.radio_button :address_number,3 %> 新しいお届け先</label>
-      <label>郵便番号（ハイフンなし）<%= f.text_field :postal_code %></label>
-      <label>住所<%= f.text_field :address %></label>
+      <table>
+      <label><%= f.radio_button :address_number,3 %> 新しいお届け先</label><br />
+      <label>郵便番号（ハイフンなし）
+      <%= f.text_field :postal_code %></label><br />
+      <label>住所<%= f.text_field :address %></label><br />
       <label>宛名<%= f.text_field :addressee %></label>
+      </table>
 
       <%= f.submit '確認画面へ進む', class: "btn btn-success" %>
       <% end %>

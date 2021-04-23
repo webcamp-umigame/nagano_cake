@@ -1,8 +1,10 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-6">
             <h2>注文情報確認</h2>
             <table class="table table-bordered">
+                <thead>
+                <tr class="table-active">
                 <tr>
                 <td>商品名</td>
                 <td>単価（税込）</td>
@@ -15,23 +17,42 @@
 				    	<tr>
 						<td><%= attachment_image_tag cart_item.product, :product_image, size: '30x30', class:"attachment product product_image fallback"%><%= cart_item.product.product_name %>
 
-							<td><%= (cart_item.product.sales_price*1.1).floor %></td>
+							<td><%= (cart_item.product.sales_price*1.1).floor.to_s(:delimited) %></td>
 							<td><%= cart_item.amount %></td>
-							<td><%= (cart_item.product.sales_price*1.1*cart_item.amount).floor %></td>
+							<td><%= (cart_item.product.sales_price*1.1*cart_item.amount).floor.to_s(:delimited) %></td>
 						</tr>
 						<% end %>
-
-            </table>
-
+                  </tr>
+                  </thead>
+             </table>
+            
+            
+            <div class="row">
+            
+            </div>
             <table class="table table-bordered">
-            <tr><th>送料</th><td>800</td></tr>
-            <tr><th>商品合計</th><td><%= @total %></td></tr>
-            <tr><th>請求金額</th><td><%= @total + @order.shipping_fee %></td></tr>
+            <thead>
+            <tr>
+            <th>送料</th>
+            <th>商品合計</th>
+            <th>請求金額</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td>800</td>
+            <td><%= converting_to_jpy(@total) %></td>
+            <td><%= converting_to_jpy(@total + @order.shipping_fee) %></td>
+            </tr>
+            </tbody>
             </table>
 
-            <table><tr><th>支払い方法</th><td>　<%= @order.payment_method %></td></tr>
+
+
+
+            <table>
+                <tr><th>支払い方法</th><td>　<%= @order.payment_method %></td></tr>
             <tr><th>お届け先</th><td>〒<%= @order.postal_code %><%= @order.address %><%= @order.addressee %></td></tr>
-            </table>
             </table>
             <table>
             </table>
