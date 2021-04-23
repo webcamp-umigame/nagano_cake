@@ -35,7 +35,6 @@ class Customer::OrdersController < ApplicationController
   def create
     @cart_items = CartItem.where(customer_id: current_customer.id)
     request_amount = 0
-    
     @cart_items.each do |cart_item|
       request_amount += (cart_item.amount * (((cart_item.product.sales_price * 1.10).round(2)).round))
     end
