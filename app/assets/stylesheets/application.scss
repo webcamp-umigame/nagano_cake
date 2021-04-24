@@ -15,6 +15,10 @@
  */
 @import "bootstrap";
 
+html {
+  font-size: 12px;
+}
+
 .pagination>li>a {
   border: none;
   color: #696969;
@@ -27,5 +31,9 @@
 
 .pagination>li>a:hover {
   border-radius: 20px;
+}
+
+a:hover {
+  text-decoration: none;
 }
 

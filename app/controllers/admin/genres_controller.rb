@@ -4,7 +4,7 @@ class Admin::GenresController < ApplicationController
     # ジャンル一覧、追加画面
     def index
       @genre = Genre.new
-      @genres = Genre.all
+      @genres = Genre.page(params[:page]).per(10)
     end
     # ジャンルの編集画面
     def edit
@@ -29,7 +29,7 @@ class Admin::GenresController < ApplicationController
         render :edit
       end
     end
-    
+
     private
 
     def genre_params
