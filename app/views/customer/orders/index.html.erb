@@ -25,7 +25,7 @@
               </td>
               <td>
                 <% order.order_products.each do |order_product| %>
-                  ・<%= order_product.product.product_name %><br>
+                  <%= order_product.product.product_name %><br>
                 <% end %>
               </td>
 
@@ -36,9 +36,7 @@
           <% end %>
         </tbody>
       </table>
-      
       <%= paginate @orders %>
-      
     </div>
   </div>
 </div>
