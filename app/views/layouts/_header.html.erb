@@ -10,7 +10,9 @@
         <ul class="navbar-nav ml-auto">
           <% if customer_signed_in? %>
           <!--customerのヘッダー-->
-            <div class="nav-link text-light">ようこそ <%= current_customer.first_name %> さん!</div>
+            <div class="nav-link text-light mr-5 mt-3">
+              ようこそ <%= current_customer.first_name %> さん
+            </div>
             <li><%= link_to ' マイページ', customers_path(current_customer), class: "nav-link text-light fas fa-user-circle" %></li>
             <li><%= link_to ' 商品一覧', products_path, class: "nav-link text-light fas fa-birthday-cake" %></li>
             <li><%= link_to ' カート', cart_items_path, class: "nav-link text-light fas fa-shopping-cart" %></li>

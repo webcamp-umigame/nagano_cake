@@ -22,7 +22,7 @@ class Admin::ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.save
       #　調べる
-     redirect_to admin_product_path(@product.id)
+     redirect_to admin_products_path
   end
 
   # 商品編集
