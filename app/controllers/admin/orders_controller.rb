@@ -6,6 +6,10 @@ class Admin::OrdersController < ApplicationController
     @orders = Order.page(params[:page]).per(10)
   end
 
+  def order
+    @orders = Order.where(customer_id: params[:id]).page(params[:page]).per(10)
+  end
+
   def show
     # 購入者 = 会員(姓) + (名)
     @customer = Customer.find(@order.customer_id)
