@@ -58,9 +58,9 @@ class Customer::OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_customer.orders.page(params[:page]).reverse_order
+    @orders = current_customer.orders.page(params[:page]).per(10)
   end
-
+  
   def show
     @order = Order.find(params[:id])
   end
