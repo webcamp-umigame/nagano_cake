@@ -1,9 +1,9 @@
 <div class="container">
     <div class="row">
         <div class="col-6">
-        <h2>マイページ</h2>
+        <h2>マイページ</h2></br></br>
 
-        <div>登録情報 <%= link_to "編集する", customers_profile_edit_path, class: "btn btn-success" %></div>
+        <div>登録情報 　　<%= link_to "編集する", customers_profile_edit_path, class: "btn btn-success" %></div></br></br>
 
         <table class="table table-bordered">
             <tbody>
@@ -14,10 +14,10 @@
                     <tr><th>電話番号</th><td><%= current_customer.telephone_number %></td></tr>
                     <tr><th>メールアドレス</th><td><%= current_customer.email %></td></tr></tr>
               </tbody>
-        </table>
+        </table></br></br>
 
-        <div>配送先 <%= link_to "一覧を見る", deliveries_path, class: "btn btn-info" %></div><br />
-        <div>注文履歴 <%= link_to "一覧を見る", orders_path, class: "btn btn-info" %></div>
+        <div>配送先 　　<%= link_to "一覧を見る", deliveries_path, class: "btn btn-info" %></div></br>
+        <div>注文履歴　 <%= link_to "一覧を見る", orders_path, class: "btn btn-info" %></div>
 
         </div>
     </div>
