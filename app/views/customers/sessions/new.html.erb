@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h2>ログイン</h2></br>
+      <h2>ログイン</h2></br></br>
       <h4>会員の方はこちらからログイン</h4></br>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
@@ -17,7 +17,7 @@
           <%= f.submit "ログイン", class: "btn btn-info" %>
         </div></br>
       <% end %>
-      <h3>会員登録がお済みでない方</h3></br>
+      <h4>会員登録がお済みでない方</h4></br>
 
       <%= render "customers/shared/links" %>から新規登録を行ってください。
     </div>
