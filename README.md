@@ -67,7 +67,7 @@ $ git clone https://github.com/webcamp-umigame/nagano_cake.git(HTTP)<br>
 $ cd NaganoCake<br>
 $ bundle install<br>
 $ rails db:migrate<br>
-$ rails db:seed<br>
+$ rails db:seed<br><br>
 
 【管理者用アカウント】<br>
 メールアドレス：admin@admin<br>
