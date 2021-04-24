@@ -59,11 +59,11 @@ InstagramのDMやメールで通販の注文を受けていたが、情報管理
 | ジャンル設定機能 | ・ジャンルの追加・変更を行うことができる。  | × |
 
 #使用方法
-$ git clone git@github.com:webcamp-umigame/nagano_cake.git(SSH)
-$ git clone https://github.com/webcamp-umigame/nagano_cake.git(HTTP)
-$ cd NaganoCake
-$ bundle install
-$ rails db:migrate
+$ git clone git@github.com:webcamp-umigame/nagano_cake.git(SSH)<br>
+$ git clone https://github.com/webcamp-umigame/nagano_cake.git(HTTP)<br>
+$ cd NaganoCake<br>
+$ bundle install<br>
+$ rails db:migrate<br>
 $ rails db:see
 
 【管理者用アカウント】
