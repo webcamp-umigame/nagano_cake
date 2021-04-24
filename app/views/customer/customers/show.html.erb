@@ -1,42 +1,24 @@
-<div>マイページ</div>
-
-<div>登録情報<%= link_to "編集する", customers_profile_edit_path %></div>
-
-
 <div class="container">
-  <div class="row">
-    <div class="col">
-<table>
-    <thead>
-        <tbody>
-            <tr>
-                <td>氏名
-                <%= current_customer.first_name %>
-                <%= current_customer.last_name %>
-                </td>
-                <td>カナ
-                <%= current_customer.first_name_kana %>
-                <%= current_customer.last_name_kana %>
-                </td>
-                <td>郵便番号
-                <%= current_customer.postal_code %>
-                </td>
-                <td>住所
-                <%= current_customer.address %>
-                </td>
-                <td>電話番号
-                <%= current_customer.telephone_number %>
-                </td>
-                <td>メールアドレス
-                <%= current_customer.email %>
-                </td>
-            </tr>
-        </tbody>
-    </thead>
-</table>
-</div>
-</div>
-</div>
+    <div class="row">
+        <div class="col-6">
+        <h2>マイページ</h2></br></br>
 
-<div>配送先<%= link_to "一覧を見る", deliveries_path %></div>
-<div>注文履歴<%= link_to "一覧を見る", orders_path %></div>
+        <div>登録情報 　　<%= link_to "編集する", customers_profile_edit_path, class: "btn btn-success" %></div></br></br>
+
+        <table class="table table-bordered">
+            <tbody>
+                    <tr><th>氏名</th><td><%= current_customer.first_name %> <%= current_customer.last_name %></td></tr>
+                    <tr><th>カナ</th><td><%= current_customer.first_name_kana %> <%= current_customer.last_name_kana %></td></tr>
+                    <tr><th>郵便番号</th><td><%= current_customer.postal_code %></td></tr>
+                    <tr><th>住所</th><td><%= current_customer.address %></td></tr>
+                    <tr><th>電話番号</th><td><%= current_customer.telephone_number %></td></tr>
+                    <tr><th>メールアドレス</th><td><%= current_customer.email %></td></tr></tr>
+              </tbody>
+        </table></br></br>
+
+        <div>配送先 　　<%= link_to "一覧を見る", deliveries_path, class: "btn btn-info" %></div></br>
+        <div>注文履歴　 <%= link_to "一覧を見る", orders_path, class: "btn btn-info" %></div>
+
+        </div>
+    </div>
+</div>

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   # admin側サイトのrouting
   namespace :admin do
-    root 'homes#top'
+    root 'orders#index'
     resources :products
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
@@ -30,9 +30,9 @@ Rails.application.routes.draw do
       patch 'customers/profile' => 'customers#update'
       get 'customers/unsubscribe' => 'customers#unsubscribe'
       patch 'customers/withdraw'  => 'customers#withdraw'
-    resources :orders, only: [:new, :create, :index, :show]
       post 'orders/confirm' => 'orders#confirm'
       get 'orders/thanx'    => 'orders#thanx'
+    resources :orders, only: [:new, :create, :index, :show]
     resources :cart_items, only: [:index, :create, :update, :destroy]
       delete 'cart_items/destroy_all'    => 'cart_items#destroy_all'
     resources :deliveries, only: [:index, :create, :edit, :update, :destroy]

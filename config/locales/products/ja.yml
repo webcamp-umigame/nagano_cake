@@ -1,0 +1,13 @@
+# カラムと日本語の対応表 #
+# Railsはymlファイルの改行とインデントで日本語化のパスを参照しているらしく、改行とインデントを入れるのをお忘れなく！
+
+ja:
+  activerecord:
+    models:
+      product: 商品          #モデル名
+    attributes:
+      product:
+        product_name: 商品名         #カラム名
+        product_description: 商品説明文   #カラム名
+        sales_price: 税抜き価格           #カラム名
+        sales_status: 販売ステータス           #カラム名

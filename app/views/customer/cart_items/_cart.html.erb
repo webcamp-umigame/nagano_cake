@@ -1,0 +1,16 @@
+<div class="field">
+  <%= form_with(model: cart_item, local: true) do |f| %>
+    <%= hidden_field_tag :product_id, params[:id] %>
+    <table>
+        <tbody>
+          <tr>
+            <td><%= f.select :amount, [1,2,3,4,5,6,7,8,9], :include_blank => "個数選択", class: "mr-3" %></td>
+            <td><%= f.submit message, class: "btn btn-sm btn-success" %>
+            (最大9個まで)
+            </td>
+            <td></td>
+          </tr>
+       </tbody>
+    </table>
+  <% end %>
+</div>

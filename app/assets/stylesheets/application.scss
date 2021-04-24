@@ -14,3 +14,18 @@
  *= require_self
  */
 @import "bootstrap";
+
+.pagination>li>a {
+  border: none;
+  color: #696969;
+}
+
+.padination>.active>a {
+  background: #CCFFFF;
+  border-radius: 20px;
+}
+
+.pagination>li>a:hover {
+  border-radius: 20px;
+}
+

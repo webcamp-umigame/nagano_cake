@@ -8,8 +8,8 @@ class Admin::ProductsController < ApplicationController
 
   # 投稿一覧
   def index
-    @products = Product.all
     @product = Product.new
+    @products = Product.page(params[:page]).per(10)
   end
 
   # 商品詳細
@@ -22,7 +22,7 @@ class Admin::ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.save
       #　調べる
-    redirect_to admin_products_path
+     redirect_to admin_products_path
   end
 
   # 商品編集

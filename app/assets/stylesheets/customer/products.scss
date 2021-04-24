@@ -1,3 +1,22 @@
 // Place all the styles related to the customer::products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "bootstrap";
+
+.list-wrap {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+.list-box {
+  margin: 10px;
+}
+
+
+
+.image_wrap:hover {
+  box-chadow: 10px 10px 10px rgba(0,0,0,0.5);
+  transform: translateY(-10px);
+  transition-duration: 0.5s;
+}
