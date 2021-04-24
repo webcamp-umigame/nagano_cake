@@ -13,7 +13,7 @@
             <th>配送先</th>
             <td>
               〒<%= @order.postal_code %><br>
-              <%= @order.address %><%= @order.addressee %>
+              <%= @order.address %>  <%= @order.addressee %>
             </td>
           </tr>
           <tr>
@@ -34,15 +34,15 @@
           <tr>
             <!--ご請求額から配送料を引いた値-->
             <th>商品合計</th>
-            <td>¥<%= (@order.request_amount - @order.shipping_fee) %></td>
+            <td><%= converting_to_jpy(@order.request_amount - @order.shipping_fee) %></td>
           </tr>
           <tr>
             <th>配送料</th>
-            <td>¥<%= @order.shipping_fee %></td>
+            <td><%= converting_to_jpy(@order.shipping_fee) %></td>
           </tr>
           <tr>
             <th>ご請求額</th>
-            <td>¥<%= @order.request_amount %></td>
+            <td><%= converting_to_jpy(@order.request_amount) %></td>
           </tr>
         </tbody>
       </table>
@@ -64,10 +64,10 @@
           <% @order.order_products.each do |order_product| %>
           <tr>
             <td><%= order_product.product.product_name %></td>
-            <td>¥<%= order_product.tax_price %></td>
+            <td><%= converting_to_jpy(order_product.tax_price) %></td>
             <td><%= order_product.amount %></td>
             <!--単価（税込)と個数をかけた数-->
-            <td>¥<%= (order_product.tax_price * order_product.amount) %></td>
+            <td><%= converting_to_jpy(order_product.tax_price * order_product.amount) %></td>
           </tr>
           <% end %>
         </tbody>
