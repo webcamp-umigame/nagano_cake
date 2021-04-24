@@ -1,7 +1,7 @@
 class Admin::HomesController < ApplicationController
   before_action :authenticate_admin!
-  #おそらくoderに移動
+
   def top
-    # @oders = Oder.all
+    @orders = Order.page(params[:page]).per(10)
   end
 end
