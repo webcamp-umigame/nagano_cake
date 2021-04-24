@@ -14,7 +14,25 @@
           </p>
           <h2>オススメ商品</h2>
           <p></p>
-          <%= link_to "もっと見る", products_path, class: "btn-link" %>
+          <div class="row">
+          <div class="col-1"></div>
+          <div class="col-md-10 mx-auto">
+          <div class="list-wrap">
+          <% @product.each do |product| %>
+           <div class="list-box">
+           <div class="image_wrap">
+        　<%= link_to product_path(product.id) do %>
+        　<%= attachment_image_tag product, :product_image, size: '150x100', class:"attachment product product_image fallback" %>
+          <% end %></div>
+          <div class="list-comment">
+          <span class="list-name"><%= product.product_name %></span><br />
+          <span class="list-price">￥<%= product.sales_price.to_s(:delimited) %></span>
+          </div>
+          </div>
+          <% end %>
+          </div>
+          </div>
+          <h4><%= link_to "全ての商品を見る", products_path, class: "btn-link" %></h4>
           </div>
           </tbody>
       </table>
