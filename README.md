@@ -4,27 +4,27 @@
 InstagramのDMやメールで通販の注文を受けていたが、情報管理が煩雑になってきたため、管理機能を含んだ通販サイトを開設しようと思い至った。
 
 <h3>通販について</h3>
-* 通販では注文に応じて製作する受注生産型としている。<br>
-* 現在通販での注文量は十分に対応可能な量のため、1日の受注量に制限は設けない。<br>
-* 送料は1配送につき全国一律800円。<br>
-* 友人や家族へのプレゼントなど、注文者の住所以外にも商品を発送できる。<br>
-* 支払方法はクレジットカード、銀行振込から選択できる。
+・ 通販では注文に応じて製作する受注生産型としている。<br>
+・ 現在通販での注文量は十分に対応可能な量のため、1日の受注量に制限は設けない。<br>
+・ 送料は1配送につき全国一律800円。<br>
+・ 友人や家族へのプレゼントなど、注文者の住所以外にも商品を発送できる。<br>
+・ 支払方法はクレジットカード、銀行振込から選択できる。
 
 <h2>開発環境</h2><br>
 <h3>使用言語</h3>
-* Ruby on Rails (5.2.5)
+・ Ruby on Rails (5.2.5)
 
 <h3>Gem</h3>
-* 'devise'<br>
-* "refile", require: "refile/rails", github: 'manfe/refile'<br>
-* "refile-mini_magick"<br>
-* 'bootstrap', '~> 4.5'<br>
-* 'jquery-rails'<br>
-* 'font-awesome-sass', '~> 5.13'<br>
-* 'pry-byebug'<br>
-* 'jp_prefecture'<br>
-* 'kaminari','~> 1.2.1'<br>
-* 'rails-i18n'
+・ 'devise'<br>
+・ "refile", require: "refile/rails", github: 'manfe/refile'<br>
+・ "refile-mini_magick"<br>
+・ 'bootstrap', '~> 4.5'<br>
+・ 'jquery-rails'<br>
+・ 'font-awesome-sass', '~> 5.13'<br>
+・ 'pry-byebug'<br>
+・ 'jp_prefecture'<br>
+・ 'kaminari','~> 1.2.1'<br>
+・ 'rails-i18n'
 
 <h2>実装機能</h2>
 
@@ -77,10 +77,10 @@ $ rails db:see
 新規登録からお進みください。
 
 <h2>開発者</h2>
-<h4>チーム名</h4>
+<h3>チーム名</h3>
 【ウミガメ】<br>
-メンバー<br>
-* ゆき<br>
-* ゆか<br>
-* あそ<br>
-* かや
+<h3>メンバー</h3>
+・ ゆき<br>
+・ ゆか<br>
+・ あそ<br>
+・ かや
