@@ -1,15 +1,20 @@
 <div class="container">
   <div class="row">
-    <div class="col">
-      <h2>配送先登録 / 一覧</h2>
+    <h2>配送先登録 / 一覧</h2>
+  </div>
 
-      <!--配送先新規登録-->
+  <!--配送先新規登録-->
+  <div class="row">
+    <div class="col-12 col-sm-8 col-md-7 mt-4">
+      <%= render 'layouts/error_messages', validation: @delivery %>
       <%= render 'form', delivery: @delivery, btn: '新規登録' %>
+    </div>
+  </div>
 
-      <!--配送先一覧-->
-      <table class="table table-bordered", id="deliveries">
-        <%= render 'index', deliveries: @deliveries %>
-      </table>
+  <!--配送先一覧-->
+  <div class="row">
+    <div class="col-12 col-sm-8 col-md-9 mt-4">
+      <%= render 'index', deliveries: @deliveries %>
     </div>
   </div>
 </div>
