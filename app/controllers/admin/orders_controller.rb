@@ -22,15 +22,17 @@ class Admin::OrdersController < ApplicationController
 
   def update
     @order_products = OrderProduct.where(order_id: params[:id])
-    if params[:order][:order_status] == "入金確認"
+    if params[:order][:order_status] == "入金待ち"
+      @order.update(order_status_params)
+      @order_products.update(production_status: "着手不可")
+    elsif params[:order][:order_status] == "入金確認"
       @order.update(order_status_params)
       @order_products.update(production_status: "製作待ち")
     elsif params[:order][:order_status] == "発送済み"
       @order.update(order_status_params)
-    else
+    elsif
       @customer = Customer.find(@order.customer_id)
       @customer_name = @customer.last_name + @customer.first_name
-      @order_products = OrderProduct.where(order_id: params[:id])
       @amaunt_ex_shipping = @order.request_amount - @order.shipping_fee
       render :show
     end
