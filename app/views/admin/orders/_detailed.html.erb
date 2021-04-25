@@ -10,7 +10,7 @@
     </tr>
     <tr>
       <th>配送先</th>
-      <td><%= order.address %> <%= order.address %><br><%= order.addressee %></td>
+      <td>〒<%= order.postal_code %> <%= order.address %><br><%= order.addressee %></td>
     </tr>
     <tr>
       <th>支払方法</th>
@@ -19,7 +19,7 @@
     <tr>
       <th>注文ステータス</th>
       <td>
-        <%= form_with model: [:admin, order], url: admin_order_path(order), method: :patch, local: true do |f| %>
+        <%= form_with model: [:admin, order], url: admin_order_path(order), method: :patch do |f| %>
           <%= f.select :order_status, Order.order_statuses.keys.map {|k| [k, k]}, { selected: order.order_status }, { style: 'margin-right: 5px;' } %>
           <%= f.submit "更新", class: "btn btn-sm btn-success" %>
         <% end %>

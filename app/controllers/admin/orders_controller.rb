@@ -25,10 +25,8 @@ class Admin::OrdersController < ApplicationController
     if params[:order][:order_status] == "入金確認"
       @order.update(order_status_params)
       @order_products.update(production_status: "製作待ち")
-      redirect_to admin_order_path(@order)
     elsif params[:order][:order_status] == "発送済み"
       @order.update(order_status_params)
-      redirect_to admin_order_path(@order)
     else
       @customer = Customer.find(@order.customer_id)
       @customer_name = @customer.last_name + @customer.first_name
