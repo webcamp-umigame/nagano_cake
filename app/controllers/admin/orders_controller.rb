@@ -11,9 +11,6 @@ class Admin::OrdersController < ApplicationController
   end
 
   def show
-    # 購入者 = 会員(姓) + (名)
-    @customer = Customer.find(@order.customer_id)
-    @customer_name = @customer.first_name + @customer.last_name
     # 注文IDに紐づく、OrderProductのデータを全件取得
     @order_products = OrderProduct.where(order_id: params[:id])
     # 商品合計 = 請求金額 - 送料
@@ -31,8 +28,6 @@ class Admin::OrdersController < ApplicationController
     elsif params[:order][:order_status] == "発送済み"
       @order.update(order_status_params)
     elsif
-      @customer = Customer.find(@order.customer_id)
-      @customer_name = @customer.last_name + @customer.first_name
       @amaunt_ex_shipping = @order.request_amount - @order.shipping_fee
       render :show
     end

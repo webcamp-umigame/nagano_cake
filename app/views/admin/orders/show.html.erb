@@ -4,7 +4,7 @@
   </div>
   <div class="row">
     <div class="col-12 col-sm-7 col-md-6 mt-4">
-      <div id="order_status">
+      <div id="order_info">
         <%= render 'admin/orders/detailed', customer_name: @customer_name, order: @order %>
       </div>
     </div>
@@ -12,7 +12,7 @@
 
   <div class="row">
     <!--各商品の製作ステータス-->
-    <div class="col-12 col-sm-12 col-md-8 mt-4" id="production_status">
+    <div class="col-12 col-sm-12 col-md-8 mt-4" id="production_info">
       <%= render 'admin/orders/order_products', order_products: @order_products, order_product: @order_product %>
     </div>
 
