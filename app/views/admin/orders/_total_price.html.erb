@@ -3,15 +3,15 @@
     <tbody>
       <tr>
         <th>商品合計</th>
-        <td><%= "#{amaunt_ex_shipping}円" %></td>
+        <td><%= converting_to_jpy(amaunt_ex_shipping) %>円</td>
       </tr>
       <tr>
         <th>送料</th>
-        <td><%= "#{order.shipping_fee}円" %></td>
+        <td><%= converting_to_jpy(order.shipping_fee) %>円</td>
       </tr>
       <tr>
         <th>請求金額合計</th>
-        <th><%= "#{order.request_amount}円" %></th>
+        <th><%= converting_to_jpy(order.request_amount) %>円</th>
       </tr>
     </tbody>
   </table>

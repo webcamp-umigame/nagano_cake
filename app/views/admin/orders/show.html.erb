@@ -1,20 +1,24 @@
 <div class="container">
   <div class="row">
-    <div class="col-10">
-      <h2>注文履歴詳細</h2>
-      <%= render 'detailed', customer_name: @customer_name, order: @order %>
+    <h2>注文履歴詳細</h2>
+  </div>
+  <div class="row">
+    <div class="col-12 col-sm-7 col-md-6 mt-4">
+      <div id="order_info">
+        <%= render 'admin/orders/detailed', customer_name: @customer_name, order: @order %>
+      </div>
     </div>
   </div>
 
   <div class="row">
     <!--各商品の製作ステータス-->
-    <div class="col-8">
-      <%= render 'order_products', order_products: @order_products, order_product: @order_product %>
+    <div class="col-12 col-sm-12 col-md-8 mt-4" id="production_info">
+      <%= render 'admin/orders/order_products', order_products: @order_products, order_product: @order_product %>
     </div>
 
     <!--会計情報-->
-    <div class="col-4 px-auto">
-      <%= render 'total_price', amaunt_ex_shipping: @amaunt_ex_shipping, order: @order %>
+    <div class="col-12 col-sm-6 col-md-3 mt-4 px-auto">
+      <%= render 'admin/orders/total_price', amaunt_ex_shipping: @amaunt_ex_shipping, order: @order %>
       <br><%= link_to "注文履歴一覧へ", admin_root_path, class: "btn btn-info" %>
     </div>
   </div>
