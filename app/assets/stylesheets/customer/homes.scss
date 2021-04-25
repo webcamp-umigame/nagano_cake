@@ -1,8 +1,31 @@
 // Place all the styles related to the customer::homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#box{
+  height: 400px;
+  width: 80%;
+  margin-left: 120px;
+}
+.image1 {
+  background-image: url(/assets/nagano_cake/image1.jpg);
+}
+
+.image2 {
+  background-image: url(/assets/nagano_cake/image6.jpg);
+}
+
+.image3 {
+  background-image: url(/assets/nagano_cake/image2.jpg);
+}
+
+.image4 {
+  background-image: url(/assets/nagano_cake/image5.jpg);
+}
+
 .main {
   text-align: center;
+  padding-bottom: 60px;
 }
 
 h2 {
@@ -44,4 +67,9 @@ h2:after {
   box-chadow: 10px 10px 10px rgba(0,0,0,0.5);
   transform: translateY(-10px);
   transition-duration: 0.5s;
+}
+
+.text-center {
+  margin-top : 20px;
+  font-size: 25px;
 }

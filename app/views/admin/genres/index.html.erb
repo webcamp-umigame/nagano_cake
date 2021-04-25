@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3 col-xs-offset-1">
+    <div class="col-md-4 col-xs-offset-1">
       <%= render 'layouts/error_messages', validation: @genre %>
 
       <h2>ジャンル一覧追加</h2>
@@ -31,7 +31,7 @@
           <% end %>
         </tbody>
       </table>
-      
+
       <%= paginate @genres %>
 
     </div>
