@@ -1,5 +1,6 @@
 {
   "name": "nagano_cake",
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+  "type": "module"
 }
