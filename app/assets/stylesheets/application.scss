@@ -15,10 +15,17 @@
  */
 @import "bootstrap";
 
-html {
+// 全般
+body {
   font-size: 12px;
+  background-color: #f8f4e6;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
+// kaminari
 .pagination>li>a {
   border: none;
   color: #696969;
@@ -33,7 +40,19 @@ html {
   border-radius: 20px;
 }
 
-a:hover {
-  text-decoration: none;
+// header
+.navbar {
+    background-color: rgba(106, 25, 23, 0.8);
+    border-bottom: 1px solid transparent;
 }
 
+.header_logo {
+  width: 200px;
+  height: auto;
+}
+
+// about
+.main_logo {
+  width: 30%;
+  height: auto;
+}
