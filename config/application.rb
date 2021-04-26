@@ -16,6 +16,9 @@ module NaganoCake
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
+    # タイムゾーンを東京へ変更（デフォルト：UTC）
+    config.time_zone = 'Tokyo'
+
     # エラーメッセージの日本語化
     #g.i18n.default_locale = :ja
     # config/locales以下のディレクトリ内にある全てのymlファイルを読み込むように指示する

@@ -11,32 +11,32 @@
      </div>
 
      <div class="field">
-      <%= f.label :product_name, "商品名" %>
+      <%= f.label :product_name, "商品名" %><br />
       <%= f.text_field :product_name %>
      </div>
 
      <div class="field">
-      <%= f.label :product_description, "商品説明" %>
+      <%= f.label :product_description, "商品説明" %><br />
       <%= f.text_area :product_description %>
      </div>
 
      <div class="form_input">
-      <%= f.label :genre_id, "ジャンル" %>
+      <%= f.label :genre_id, "ジャンル" %><br />
       <%= f.collection_select :genre_id, Genre.all, :id, :name, :include_blank => "ジャンルを選択してください" %>
      </div>
 
      <div class="field">
-      <%= f.label :sales_price, "価格（税抜き）" %>
-      <%= f.text_field :sales_price %>円
+      <%= f.label :sales_price, "価格（税抜き）" %><br />
+      <%= f.text_field :sales_price %> 円
      </div>
 
      <div class="field">
-      <%= f.label :sales_status, "販売ステータス" %>
+      <%= f.label :sales_status, "販売ステータス" %><br />
       <%= f.radio_button :sales_status, "true" %>販売中
       <%= f.radio_button :sales_status, "false" %>販売停止
      </div>
 
-
+     <p></p>
      <div><%= f.submit '新規登録',class: "btn btn-success text-light" %></div>
 
      <% end %>

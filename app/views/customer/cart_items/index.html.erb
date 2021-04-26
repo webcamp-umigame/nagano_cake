@@ -6,50 +6,57 @@
     <%= render 'layouts/flash' %>
   </div>
   <div class="row">
-    <div class="col text-right">
-        <tr></tr>
+    <div class="col-12 col-sm-8 col-md-7">
       <% if @cart_items.present? %>
-        <%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, class: "btn btn-sm btn-danger", "data-confirm" => "カートをすべて削除しますか？" %>
+        <div class="col-12 my-3 text-right">
+          <%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, class: "btn btn-sm btn-danger", "data-confirm" => "カートをすべて削除しますか？" %>
+        </div>
+      <% else %>
+        <div class="col-12 my-3">
+          <h4>カートに何も入っていません</h4>
+        </div>
       <% end %>
     </div>
   </div>
   <div class="row">
-    <table class="table table-bordered">
-      <thead>
-        <tr class="table-active">
-          <td>商品名</td>
-          <td>単価（税込）</td>
-          <td>数量</td>
-          <td>小計</td>
-          <td></td>
-        </tr>
-      </thead>
-      <tbody>
-        <% @sum = 0 %>
-        <% @cart_items.each do |cart_item| %>
-        <tr>
-          <td><%= attachment_image_tag cart_item.product, :product_image, size: '30x30', class:"attachment product product_image fallback" %><%= cart_item.product.product_name %></td>
-          <td><%= cart_item.tax_sales_price.to_s(:delimited) %></td>
-          <td>
-            <%= form_with model: cart_item do |f| %>
-              <%= f.select :amount, [1,2,3,4,5,6,7,8,9], class: "mr-3" %>
-              <%= f.submit "変更", class: "btn btn-sm btn-success" %>
-            <% end %>
-          </td>
-          <td><%= converting_to_jpy(cart_item.tax_sales_price * cart_item.amount) %></td>
-          <% @sum += cart_item.tax_sales_price * cart_item.amount %>
-          <td><%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-sm btn-danger", "data-confirm" => "カートから削除しますか？" %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <div class="col-12 col-sm-8 col-md-7">
+      <table class="table table-bordered">
+        <thead>
+          <tr class="table-active">
+            <td>商品名</td>
+            <td>単価（税込）</td>
+            <td>数量</td>
+            <td>小計</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @sum = 0 %>
+          <% @cart_items.each do |cart_item| %>
+          <tr>
+            <td><%= attachment_image_tag cart_item.product, :product_image, size: '30x30', class:"attachment product product_image fallback" %><%= cart_item.product.product_name %></td>
+            <td><%= cart_item.tax_sales_price.to_s(:delimited) %></td>
+            <td>
+              <%= form_with model: cart_item do |f| %>
+                <%= f.select :amount, [1,2,3,4,5,6,7,8,9], class: "mr-3" %>
+                <%= f.submit "変更", class: "btn btn-sm btn-success" %>
+              <% end %>
+            </td>
+            <td><%= converting_to_jpy(cart_item.tax_sales_price * cart_item.amount) %></td>
+            <% @sum += cart_item.tax_sales_price * cart_item.amount %>
+            <td><%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-sm btn-danger", "data-confirm" => "カートから削除しますか？" %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <div class="row">
-    <div class="col-6">
+    <div class="col-6  col-sm-4 col-md-4">
       <%= link_to "買い物を続ける", root_path, class: "btn btn-info" %>
     </div>
-    <div class="col-6">
+    <div class="col-6 col-sm-4 col-md-3">
       <table class="table table-bordered">
         <tbody>
           <td class="table-active">合計金額</td>

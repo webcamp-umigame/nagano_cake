@@ -15,10 +15,9 @@
 //= require jquery_ujs
 //= require popper
 //= require bootstrap-sprockets
-
+//= require jquery
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require_tree .
   $(document).ready(function () {
     $("#images").skippr({
@@ -44,3 +43,13 @@
       hidePrevious : false
     });
   });
+
+$(function() {
+    $('.slide-image').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+    });
+});
+
