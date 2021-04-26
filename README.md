@@ -64,7 +64,7 @@ InstagramのDMやメールで通販の注文を受けていたが、情報管理
 <h2>使用方法</h2>
 $ git clone git@github.com:webcamp-umigame/nagano_cake.git(SSH)<br>
 $ git clone https://github.com/webcamp-umigame/nagano_cake.git(HTTP)<br>
-$ cd NaganoCake<br>
+$ cd nagano_cake<br>
 $ bundle install<br>
 $ rails db:migrate<br>
 $ rails db:seed<br><br>
