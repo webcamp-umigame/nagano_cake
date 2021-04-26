@@ -1,6 +1,5 @@
 <header class="sticky-top">
   <nav class="navbar navbar-expand-lg">
-    <div class="container">
       <a class="nav-link", href="/"><img src="/assets/header_logo.png", class="header_logo"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -32,6 +31,22 @@
           <% end %>
         </ul>
       </div>
-    </div>
+      <% if customer_signed_in? %>
+        <dl class="searchbox mt-1">
+          <%= search_form_for @search, url: products_path do |f| %>
+            <dt><%= f.text_field :product_name_cont ,placeholder: '検索するテキストを入力...' %></dt>
+            <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
+          <% end %>
+         </dl>
+        <% elsif admin_signed_in? %>
+        <dl class="searchbox mt-1">
+          <%= search_form_for @search_q, url: admin_customers_path do |f| %>
+            <dt><%= f.text_field :first_name_or_last_name_cont, placeholder: '検索するテキストを入力...' %></dt>
+            <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
+          <% end %>
+        </dl>
+        <% else %>
+
+      <% end %>
   </nav>
 </header>
