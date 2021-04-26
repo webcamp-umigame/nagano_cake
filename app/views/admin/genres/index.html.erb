@@ -3,10 +3,10 @@
     <div class="col-md-4 col-xs-offset-1">
       <%= render 'layouts/error_messages', validation: @genre %>
 
-      <h2>ジャンル一覧・追加</h2>
+      <h2>ジャンル一覧追加</h2>
       <!--ジャンルの追加画面-->
       <%= form_with model: [:admin,@genre], local:true do |f| %>
-        <div class="form-group my-4">
+        <div class="form-group">
           <%= f.label :name, "ジャンル名" %>
           <%= f.text_field :name, placeholder: "ジャンル名" %>
           <%= f.submit '追加', class:"btn btn-success" %>
@@ -15,7 +15,7 @@
       <!--ジャンルの一覧画面-->
       <table class="table able-inverse">
         <thead>
-          <tr class="table-active">
+          <tr>
             <th>ジャンル</th>
             <th></th>
           </tr>
