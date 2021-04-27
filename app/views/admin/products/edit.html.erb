@@ -1,36 +1,37 @@
 <div class="container">
   <div class="row">
     <div class="col">
+      <%= render 'layouts/error_messages', validation: @product %>
      <h2>商品編集</h2>
       <%= form_with(model: [:admin, @product], local:true) do |f| %>
 
       <div class="field">
-        <%= f.label :product_image, "商品画像" %>
+        <%= f.label :product_image, "商品画像" %><br />
         <%= f.attachment_field :product_image %>
       </div>
 
       <div class="field">
-        <%= f.label :product_name, "商品名" %>
+        <%= f.label :product_name, "商品名" %><br />
         <%= f.text_field :product_name %>
       </div>
 
       <div class="field">
-        <%= f.label :product_description, "商品説明" %>
+        <%= f.label :product_description, "商品説明" %><br />
         <%= f.text_field :product_description %>
       </div>
 
       <div class="form_input">
-        <%= f.label :genre_id, "ジャンル" %>
+        <%= f.label :genre_id, "ジャンル" %><br />
         <%= f.collection_select :genre_id, Genre.all, :id, :name, :include_blank => "ジャンルを選択してください" %>
       </div>
 
       <div class="field">
-        <%= f.label :sales_price, "税抜価格" %>
+        <%= f.label :sales_price, "税抜価格" %><br />
         <%= f.text_field :sales_price %>円
       </div>
 
       <div class="field">
-        <%= f.label :sales_status, "販売ステータス" %>
+        <%= f.label :sales_status, "販売ステータス" %><br />
         <label><%= f.radio_button :sales_status, "true" %>販売中</label>
         <label><%= f.radio_button :sales_status, "false" %>販売停止</label>
       </div>
