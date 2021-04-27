@@ -6,6 +6,7 @@ class Admin::GenresController < ApplicationController
       @genre = Genre.new
       @genres = Genre.page(params[:page]).per(10)
     end
+
     # ジャンルの編集画面
     def edit
       @genre = Genre.find(params[:id])
