@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def set_search
     # 商品検索
     @search = Product.ransack(params[:q])#ransackメソッド推奨
-    @search_products = @search.result.page(params
+    @search_products = @search.result.page(params[:page])
   end
     # 管理者側の検索ページ
   def set_admin_search
