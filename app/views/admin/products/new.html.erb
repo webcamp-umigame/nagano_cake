@@ -6,8 +6,8 @@
      <%= form_with(model: [:admin, @product], local:true) do |f| %>
 
      <div class="field">
-      <%= f.label :product_image, "商品画像" %>
-      <%= f.attachment_field :product_image, class: 'text-center' %>
+      <%= f.label :product_image, "商品画像" %><br />
+      <%= f.attachment_field :product_image %>
      </div>
 
      <div class="field">
