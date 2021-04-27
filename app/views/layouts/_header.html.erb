@@ -32,6 +32,24 @@
           <% end %>
         </ul>
       </div>
-    </div>
+      <% if customer_signed_in? %>
+        <dl class="searchbox mt-1">
+          <!--会員側の商品検索-->
+          <%= search_form_for @search, url: products_path do |f| %>
+            <dt><%= f.text_field :product_name_cont ,placeholder: '検索するテキストを入力...' %></dt>
+            <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
+          <% end %>
+         </dl>
+      <% elsif admin_signed_in? %>
+        <dl class="searchbox mt-1">
+          <!--管理側の会員検索（名前で）-->
+          <%= search_form_for @search_q, url: admin_customers_path do |f| %>
+            <!--姓・名・セイ・メイ・住所・受注ステータスで検索可能（_or_でカラムを記述することで複数のカラムを選択可能）-->
+            <dt><%= f.text_field :first_name_or_last_name_or_email_or_first_name_kana_or_last_name_kana_or_address_or_orders_order_status_cont, placeholder: '検索するテキストを入力...' %></dt>
+            <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
+          <% end %>
+       <% else %>
+
+      <% end %>
   </nav>
 </header>

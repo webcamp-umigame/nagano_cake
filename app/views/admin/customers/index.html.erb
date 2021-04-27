@@ -14,10 +14,10 @@
           </tr>
         </thead>
         <tbody>
-          <% @customers.each do |customer| %>
+          <% @search_customers.each do |customer| %>
             <tr>
               <td><%= customer.id %></td>
-              <td><%= link_to customer.first_name+customer.last_name, admin_customer_path(customer) %></td>
+              <td><%= link_to customer.first_name + customer.last_name, admin_customer_path(customer) %></td>
               <td><%= customer.email %></td>
               <% if customer.is_deleted == false %>
                 <td class="text-success">有効</td>
