@@ -22,7 +22,7 @@
       </thead>
 
        <tbody>
-        <% @search_products.each do |product| %>
+        <% @products.each do |product| %>
         <tr>
          <td><%= product.id %></td>
          <td><%= link_to admin_product_path(product.id) do %>
