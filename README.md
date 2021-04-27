@@ -15,16 +15,17 @@ InstagramのDMやメールで通販の注文を受けていたが、情報管理
 ・ Ruby on Rails (5.2.5)
 
 <h3>Gem</h3>
-・ 'devise'<br>
-・ "refile", require: "refile/rails", github: 'manfe/refile'<br>
-・ "refile-mini_magick"<br>
-・ 'bootstrap', '~> 4.5'<br>
-・ 'jquery-rails'<br>
-・ 'font-awesome-sass', '~> 5.13'<br>
-・ 'pry-byebug'<br>
-・ 'jp_prefecture'<br>
-・ 'kaminari','~> 1.2.1'<br>
-・ 'rails-i18n'
+・ gem 'devise'<br>
+・ gem "refile", require: "refile/rails", github: 'manfe/refile'<br>
+・ gem "refile-mini_magick"<br>
+・ gem 'bootstrap', '~> 4.5'<br>
+・ gem 'jquery-rails'<br>
+・ gem 'font-awesome-sass', '~> 5.13'<br>
+・ gem 'pry-byebug'<br>
+・ gem 'jp_prefecture'<br>
+・ gem 'kaminari','~> 1.2.1'<br>
+・ gem 'rails-i18n'<br>
+・ gem 'ransack'<br>
 
 <h2>実装機能</h2>
 
