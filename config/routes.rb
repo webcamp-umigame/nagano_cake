@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   scope module: :customer do
     root 'homes#top'
     get 'about' => 'homes#about'
+    get 'products/search' => 'products#search'
     resources :products, only: [:index, :show]
     resource :customers, only: [:show, :update]
       get 'customers/profile/edit' => 'customers#edit'

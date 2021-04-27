@@ -27,13 +27,10 @@
               <td><%= genre.name %></td>
               <td><%= link_to '編集', edit_admin_genre_path(genre.id), class: "btn btn-success" %> </td>
             </tr>
-            </tr>
           <% end %>
         </tbody>
       </table>
-
       <%= paginate @genres %>
-
     </div>
   </div>
 </div>

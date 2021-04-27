@@ -35,7 +35,7 @@
       <% if customer_signed_in? %>
         <dl class="searchbox mt-1">
           <!--会員側の商品検索-->
-          <%= search_form_for @search, url: products_path do |f| %>
+          <%= search_form_for @search, url: products_search_path do |f| %>
             <dt><%= f.text_field :product_name_cont ,placeholder: '検索するテキストを入力...' %></dt>
             <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
           <% end %>
