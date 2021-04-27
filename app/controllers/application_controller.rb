@@ -1,7 +1,24 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_search
+  before_action :set_admin_search
 
   protected
+    # 会員側の検索ページ
+  def set_search
+    # 商品検索
+    @search = Product.ransack(params[:q])#ransackメソッド推奨
+    @search_products = @search.result.page(params[:page])
+  end
+    # 管理者側の検索ページ
+  def set_admin_search
+    # 会員検索
+    @search_q = Customer.ransack(params[:q])
+    @search_customers = @search_q.result.page(params[:page])
+  end
+
+
+
   def after_sign_in_path_for(resource)
     if customer_signed_in?
       customers_path(resource)

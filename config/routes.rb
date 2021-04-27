@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :orders, only: [:show, :update]
+      get 'customers/:id/orders' => 'orders#order'
     resources :order_products, only: [:update]
   end
 
@@ -24,6 +25,7 @@ Rails.application.routes.draw do
   scope module: :customer do
     root 'homes#top'
     get 'about' => 'homes#about'
+    get 'products/search' => 'products#search'
     resources :products, only: [:index, :show]
     resource :customers, only: [:show, :update]
       get 'customers/profile/edit' => 'customers#edit'
@@ -33,8 +35,8 @@ Rails.application.routes.draw do
       post 'orders/confirm' => 'orders#confirm'
       get 'orders/thanx'    => 'orders#thanx'
     resources :orders, only: [:new, :create, :index, :show]
+    delete 'cart_items/destroy_all'    => 'cart_items#destroy_all'
     resources :cart_items, only: [:index, :create, :update, :destroy]
-      delete 'cart_items/destroy_all'    => 'cart_items#destroy_all'
     resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
   end
 end

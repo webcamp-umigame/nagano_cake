@@ -1,24 +1,15 @@
 <div class="container">
   <div class="row">
-   <div class="col-4">
-    <%= render 'layouts/error_messages', validation: @cart_item %>
-      <% @cart_item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+    <div class="col-4">
+     <%= render 'layouts/error_messages', validation: @cart_item %>
 
-
-    <%= attachment_image_tag @product, :product_image, size: '200x150', class:"attachment product product_image fallback"%>
-   </div>
-      <div class="col-4">
-       <p><h3><%= @product.product_name %></h3></p>
-       <p><h4><%= @product.product_description %></h4></p>
-       <p><h4>￥<%= @product.add_tax_sales_price.to_s(:delimited) %>(税込)</h4></p>
-      </div>
-   </div>
-   <table class="tabel-borderless table">
-        <tr></tr>
-        <td><%= render 'customer/cart_items/cart', cart_item: @cart_item, message: "カートに入れる" %></td>
-        <tr></tr>
-   </table>
-   </div>
+     <%= attachment_image_tag @product, :product_image, size: '200x150', class:"attachment product product_image fallback"%>
+    </div>
+    <div class="col-4">
+     <p><h3><%= @product.product_name %></h3></p>
+     <p><h4><%= @product.product_description %></h4></p>
+     <p><h4>￥<%= @product.add_tax_sales_price.to_s(:delimited) %>(税込)</h4></p><br>
+     <%= render 'customer/cart_items/cart', cart_item: @cart_item, message: "カートに入れる" %>
+    </div>
+  </div>
 </div>

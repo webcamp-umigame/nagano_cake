@@ -20,9 +20,11 @@ class Admin::ProductsController < ApplicationController
   # 投稿データ保存
   def create
     @product = Product.new(product_params)
-    @product.save
-      #　調べる
-    redirect_to admin_product_path(@product.id)
+    if @product.save
+     redirect_to admin_product_path(@product.id)
+    else
+     render "new"
+    end
   end
 
   # 商品編集
@@ -33,8 +35,11 @@ class Admin::ProductsController < ApplicationController
   # 商品編集更新
   def update
     @product = Product.find(params[:id])
-    @product.update(product_params)
-    redirect_to admin_products_path
+    if @product.update(product_params)
+      redirect_to admin_products_path
+    else
+      render "edit"
+    end
   end
 
 

@@ -27,8 +27,11 @@ class Customer::OrdersController < ApplicationController
         @delivery.postal_code = @order.postal_code
         @delivery.addressee = @order.addressee
         @delivery.address = @order.address
-        @delivery.save
-      @order.save
+        if @delivery.save
+          @order.save
+        else
+          render :new
+        end
     end
   end
 
@@ -60,7 +63,7 @@ class Customer::OrdersController < ApplicationController
   def index
     @orders = current_customer.orders.page(params[:page]).per(10)
   end
-  
+
   def show
     @order = Order.find(params[:id])
   end

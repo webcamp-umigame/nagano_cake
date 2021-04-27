@@ -19,7 +19,7 @@
       <p><%= @product.product_name %></p>
       <p><%= @product.product_description %></p>
       <p><%= @product.genre.name %></p>
-      <p><%= @product.sales_price %>(<%= @product.add_tax_sales_price.to_s(:delimited) %>)円</p>
+      <p><%= @product.add_tax_sales_price.to_s(:delimited) %>(<%= @product.sales_price %>)円</p>
       <br />
       <p><% if @product.sales_status == true %>
          <label class="text-success">販売中</label>
