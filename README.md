@@ -25,7 +25,7 @@ InstagramのDMやメールで通販の注文を受けていたが、情報管理
 ・ gem 'jp_prefecture'<br>
 ・ gem 'kaminari','~> 1.2.1'<br>
 ・ gem 'rails-i18n'<br>
-・ gem 'ransack'<br>
+・ gem 'ransack'
 
 <h2>実装機能</h2>
 
