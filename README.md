@@ -61,17 +61,17 @@ InstagramのDMやメールで通販の注文を受けていたが、情報管理
 #使用方法
 $ git clone git@github.com:webcamp-umigame/nagano_cake.git(SSH)
 $ git clone https://github.com/webcamp-umigame/nagano_cake.git(HTTP)
-$ cd NaganoCake
+$ cd nagano_cake
 $ bundle install
 $ rails db:migrate
-$ rails db:see
+$ rails db:seed
 
 【管理者用アカウント】
 メールアドレス：admin@admin
 パスワード：111111
 
 【顧客用アカウント】
-新規登録（ヘッダー）からお進みください。
+ヘッダーの「新規登録」からアカウントをご登録ください。
 商品のご注文はログイン後から可能になります。
 
 #開発者
